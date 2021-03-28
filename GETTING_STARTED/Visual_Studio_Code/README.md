@@ -23,7 +23,6 @@ In addition to the base install, there are numerous extensions that will help wo
 
 - [Enzyne Snippets](https://marketplace.visualstudio.com/items?itemName=crusadedev.enzyne-snippet)
 - [htmltagwrap](https://marketplace.visualstudio.com/items?itemName=bradgashler.htmltagwrap)
-- [reactstrap-snippets](https://marketplace.visualstudio.com/items?itemName=jjpatel361.reactstrap-snippets)
 - [Reactjs code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets)
 
 ---

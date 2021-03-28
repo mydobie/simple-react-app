@@ -21,7 +21,7 @@ describe('Loading icon tests', () => {
   });
   test('Props change spinner', () => {
     wrapper = mount(
-      <Loading color='#ff0000' size='10px'>
+      <Loading color='danger' size='10px'>
         We are loading data
       </Loading>
     );
@@ -32,9 +32,7 @@ describe('Loading icon tests', () => {
     );
 
     expect(wrapper.find('Spinner')).toHaveLength(1);
-    expect(wrapper.find('Spinner').first().props().style.color).toEqual(
-      '#ff0000'
-    );
+    expect(wrapper.find('Spinner').first().props().variant).toEqual('danger');
     expect(wrapper.find('Spinner').first().props().style.height).toEqual(
       '10px'
     );

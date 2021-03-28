@@ -9,7 +9,7 @@ pipeline {
     //     ARTIFACTORY = credentials('artifactory.umn.edu')
     //     ARTIFACTORY_PASS = "${ARTIFACTORY_PSW}"
     //     ARTIFACTORY_USER = 'appdev'
-    }
+    // }
     stages {
         stage('checkout') {
             steps {
@@ -23,10 +23,9 @@ pipeline {
             }
         }
         stage('Install dependencies') {
-        steps {
-            sh 'npm_config_cache=npm-cache npm ci'
-            sh 'node -v > node_version'
-            sh 'npm run build'
+            steps {
+                sh 'npm_config_cache=npm-cache npm ci'
+                sh 'node -v > node_version'
             }
         }
         stage('Test') {
@@ -53,17 +52,22 @@ pipeline {
                 sh 'npm run npmAudit'
             }
         }
-       
-            // stage('Push to Artifactory - Green channel') {
-            //     when { tag "v*" }
-            //     steps {
-            //         script{
-            //         sh 'npm run createTar'
-            //         def version = "${TAG_NAME}".substring(1)
-            //         def upload = $/curl -X PUT -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -T ./archive/simple-react-app-"${version}".tgz "https://artifactory.umn.edu/artifactory/appdev-generic-private-local/edu.umn.oit/simple-react-app/green/BETA/simple-react-app-${version}.tgz"/$
-            //         sh upload
-            //     }
-            // }
+        stage('Build') {
+            steps {
+                sh 'npm run build:ci'
+            }
         }
+       
+        // stage('Push to Artifactory - Green channel') {
+        //     when { tag "v*" }
+        //     steps {
+        //         script{
+        //             sh 'npm run createTar'
+        //             def version = "${TAG_NAME}".substring(1)
+        //             def upload = $/curl -X PUT -u $ARTIFACTORY_USER:$ARTIFACTORY_PASS -T ./archive/simple-react-app-"${version}".tgz "https://artifactory.umn.edu/artifactory/appdev-generic-private-local/edu.umn.oit/simple-react-app/green/BETA/simple-react-app-${version}.tgz"/$
+        //             sh upload
+        //         }
+        //      }
+        // }
     }
 }

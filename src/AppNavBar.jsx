@@ -2,7 +2,13 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Nav, NavItem } from 'reactstrap';
+import { Nav } from 'react-bootstrap';
+
+import {
+  HOME_ROUTE,
+  VERSION_ROUTE,
+  FEATURE_FLAGS_ROUTE,
+} from './AppRouteNames';
 
 // START FEATURE FLAGS
 import { isProd } from './js/whichEnv';
@@ -11,32 +17,36 @@ import { isProd } from './js/whichEnv';
 const AppNavBar = () => (
   <nav>
     <Nav>
-      <NavItem>
-        <NavLink activeClassName='active' className='nav-link' to='/'>
+      <Nav.Item>
+        <NavLink activeClassName='active' className='nav-link' to={HOME_ROUTE}>
           Home
         </NavLink>
-      </NavItem>
+      </Nav.Item>
 
       {/* // START FEATURE FLAGS */}
       {/* Only show feature flags UI for non production */}
       {!isProd() ? (
-        <NavItem>
+        <Nav.Item>
           <NavLink
             activeClassName='active'
             className='nav-link'
-            to='/featureflags'
+            to={FEATURE_FLAGS_ROUTE}
           >
             Feature flags
           </NavLink>
-        </NavItem>
+        </Nav.Item>
       ) : null}
       {/* // END FEATURE FLAGS */}
 
-      <NavItem>
-        <NavLink activeClassName='active' className='nav-link' to='/version'>
+      <Nav.Item>
+        <NavLink
+          activeClassName='active'
+          className='nav-link'
+          to={VERSION_ROUTE}
+        >
           Version
         </NavLink>
-      </NavItem>
+      </Nav.Item>
     </Nav>
   </nav>
 );

@@ -1,14 +1,17 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import {  } from 'reactstrap';
+// import {  } from 'react-bootstrap';
 
-const SAMPLE_NO_STATE = (props) => (
+const SAMPLE_NO_STATE = (props) => {
   // const {} = props;
 
-  <div>
-    <strong>CONTENT GOES HERE</strong>
-  </div>
-);
+  const myVar = 'Hello world';
+  return (
+    <div>
+      <strong>CONTENT GOES HERE - {myVar}</strong>
+    </div>
+  );
+};
 SAMPLE_NO_STATE.propTypes = {};
 SAMPLE_NO_STATE.defaultProps = {};
 

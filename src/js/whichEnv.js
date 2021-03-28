@@ -2,6 +2,7 @@
 // Add non-prod environments here:
 const environments = [
   { urlpattern: 'localhost', env: 'dev' },
+  { urlpattern: '127.0.0.1', env: 'dev' },
   { urlpattern: 'dev.', env: 'dev' },
   { urlpattern: 'development.', env: 'dev' },
   { urlpattern: 'test.', env: 'test' },

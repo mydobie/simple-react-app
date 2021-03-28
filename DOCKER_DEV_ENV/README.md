@@ -53,7 +53,8 @@ bash ./DOCKER_DEV_ENV/docker destroy
 ```
 
 ## Auto Refresh
-Unfortunately the browser will not automatically refresh when you make a change to a file.  This means that you will need to hit the "refresh" button in your browser to see changes.
+
+Unfortunately the browser will not automatically refresh when you make a change to a file. This means that you will need to hit the "refresh" button in your browser to see changes.
 
 ### Docker notes
 
@@ -70,9 +71,7 @@ To change this:
 - Open the .git config file for this project (.git/config)
 - Change the `url` entry to something like this: `url = git@github.umn.edu:myorg/myrepo.git`
 
-
-
 ## Helpful Docker commands
 
-  - List all containers => `docker container ls -a`
-  - List all images => `docker image ls`
+- List all containers => `docker container ls -a`
+- List all images => `docker image ls`

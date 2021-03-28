@@ -1,6 +1,6 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-// import {  } from 'reactstrap';
+// import {  } from 'react-bootstrap';
 
 export default class SAMPLE extends React.Component {
   constructor(props) {

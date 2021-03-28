@@ -9,6 +9,12 @@ import { FeatureFlagsUI } from 'feature_flags';
 import { isProd } from './js/whichEnv';
 // END FEATURE FLAGS
 
+import {
+  HOME_ROUTE,
+  VERSION_ROUTE,
+  FEATURE_FLAGS_ROUTE,
+} from './AppRouteNames';
+
 import Home from './pages/Home';
 import Version from './pages/Version';
 import FourOhFour from './pages/FourOhFour';
@@ -19,18 +25,18 @@ const AppRoutes = (props) => {
   return (
     <div>
       <Switch>
-        <Route path='/' exact>
+        <Route path={HOME_ROUTE} exact>
           <Home />
         </Route>
 
-        <Route path='/version'>
+        <Route path={VERSION_ROUTE}>
           <Version />
         </Route>
 
         {/* // START FEATURE FLAGS */}
         {/* Only show feature flags UI for non production */}
         {!isProd() ? (
-          <Route path='/featureflags'>
+          <Route path={FEATURE_FLAGS_ROUTE}>
             <FeatureFlagsUI onFeatureChange={onFeatureChange} />
           </Route>
         ) : null}

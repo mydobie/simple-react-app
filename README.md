@@ -14,7 +14,7 @@ CHANGE ME => Brief description of what this application does.
 
 At the root of the project run the following commands in a terminal to verify you can perform all the development tasks:
 
-1.  Verify node is installed => `node -v`. Ensure that it version 12 or 14
+1.  Verify node is installed => `node -v`. Ensure that it is version listed in the `engines` section of the `package.json` file.
 1.  Install dependencies => `npm run d`
 1.  Verify you can check for lint errors => `npm run lint`
 1.  Verify you can run the tests => `npm run test`
@@ -27,7 +27,7 @@ At the root of the project run the following commands in a terminal to verify yo
 
 The only requirement is that development system has Node.js installed. You can verify you have node installed by running `node -v` in a terminal.
 
-NOTE: The development tools requires Node 12 or 14
+NOTE: The development tools require a node version listed in the `engines` section of the `package.json` file.
 
 If have an different version of node running, first verify if you have NVM installed by running `nvm --version` in a terminal. If you do have NVM running, then see the [NVM website](https://github.com/nvm-sh/nvm) on how to install and use a new version of Node.
 
@@ -51,7 +51,7 @@ This application uses [Husky](https://github.com/typicode/husky) to automaticall
 
 To start the development server with mocked data, run `npm run start:mock` in a terminal at the root of the project. If you want to run the application making real API calls, run `npm run start`.
 
-This will start the application in development node and open the application in a browser. Note the application will not build if there are any linting errors.
+This will start the application in development mode and open the application in a browser. Note the application will not build if there are any linting errors.
 
 The application wil be available at [http://localhost:3000](http://localhost:3000) in a browser.
 
@@ -69,7 +69,7 @@ After running tests, you can check the coverage reports by opening `coverage/ind
 
 If you prefer, you can have the testing run in "watch" mode by running `npm run test:watch` in a terminal at the root of the project. The tests will be rerun as you make edits. Note coverage reports will not be updated while in watch mode.
 
-Test are run in [Jest](https://jestjs.io/docs/en/expect), use [Enzyme](https://enzymejs.github.io/enzyme/) to inspect Components, and [jest-axe](https://github.com/nickcolley/jest-axe) to check for accessibility.
+Test are run in [Jest](https://jestjs.io/docs/en/expect), use [Enzyme](https://enzymejs.github.io/enzyme/) to inspect components, and [jest-axe](https://github.com/nickcolley/jest-axe) to check for accessibility.
 
 #### Snapshot tests
 
@@ -99,7 +99,7 @@ If you want to create the build (production-ready) without creating a tar file, 
 
 If you get a `Node Sass could not find a binding for your current environment` error, it means that the SASS compiler wasn't downloaded for your node version and OS. Run `npm run d` to ensure that the correct version of the compiler is downloaded.
 
-If the application has feature flags enabled, a harmless `Module not found: Can't resolve 'react-redux'` warning will be shown and it can be ignored. This warning will not prevent the build from happening nor will it impact the application. It is currently a known issue with the feature flags module.
+If the application has feature flags enabled, a harmless `Module not found: Can't resolve ... ` warnings will be shown and they can be ignored. These warnings will not prevent the build from happening nor will it impact the application. It is currently a known issue with the feature flags module.
 
 ---
 
@@ -119,5 +119,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This application uses a couple of modules that are not available via an NPM registry yet.
 
-- [feature_flags](https://github.com/mydobie/featureFlags)
+- [feature_flags](https://github.umn.edu/oit-react-components/featureFlags)
 - [umn_web_template_components](https://github.umn.edu/oit-react-components/umn_web_template_components)

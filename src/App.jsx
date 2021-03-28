@@ -1,7 +1,7 @@
 // Contains routing and any application wide items like headers, footers and navigation
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
-import { Alert } from 'reactstrap';
+import { Alert } from 'react-bootstrap';
 import { UmnHeader, UmnFooter } from 'umn_web_template_components';
 
 // START FEATURE FLAGS
@@ -14,17 +14,19 @@ import { featureFlagArray } from './feature-flags.config';
 import AppNavBar from './AppNavBar';
 import AppRoutes from './AppRoutes';
 
+import SetAxios from './components/SetAxios';
+
 const envBanner = () => {
   if (isDev()) {
     return (
-      <Alert color='warning'>
+      <Alert variant='warning'>
         This is a <strong>development</strong> environment.
       </Alert>
     );
   }
   if (isTest()) {
     return (
-      <Alert color='primary'>
+      <Alert variant='primary'>
         This is a <strong>test</strong> environment.
       </Alert>
     );
@@ -58,6 +60,7 @@ class App extends React.Component {
       <div>
         {envBanner()}
         <Router basename={basename}>
+          <SetAxios />
           <UmnHeader />
           <AppNavBar />
           <main>
