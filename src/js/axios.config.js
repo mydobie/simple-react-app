@@ -1,14 +1,13 @@
-/* eslint-disable import/prefer-default-export */
-
-// AJAX CONFIGS.  Add a separate export for each ajax call
-
-// export const sampleAPI = {
-//   method: () => 'get',
-//   url: () =>
-//     process.env.REACT_APP_USE_MOCKS === 'true'
-//       ? `/__fixtures__/MY_FIXTURE.json` // NOTE: `__fixtures__` is the  `/public/__fixtures__` directory.
-//       : `REAL_API_URL`,
-// };
+// Setting method and url here allows for the use of fixtures during development
+export const dinoApi = {
+  method: () => 'get',
+  url: (number = 5) => {
+    if (process.env.REACT_APP_USE_MOCKS === 'true') {
+      return `/__fixtures__/dinoipsum.json?words=${number}`;
+    }
+    return `http://dinoipsum.herokuapp.com/api/?format=json&paragraphs=1&words=${number}`;
+  },
+};
 
 // Function that will mock the time delay of a real ajax call when using mocks
 export const ajaxFinally = async (

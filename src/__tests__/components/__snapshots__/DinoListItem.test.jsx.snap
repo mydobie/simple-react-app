@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading icon tests When checkbox is clicked, changeCheckBox is called 1`] = `
+<li>
+  <FormCheck
+    defaultChecked={false}
+    id="cb_4"
+    label="tRex"
+    onClick={[Function]}
+  />
+</li>
+`;

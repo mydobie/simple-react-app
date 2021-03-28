@@ -19,7 +19,6 @@ In order to keep the project organized, the project has the following structure:
   - `/src/components` => Child and leaf components. In larger projects, there maybe sub folders
     - `/src/components/SAMPLE.jsx` => Sample component that can be used as a template.
     - `/src/components/SAMPLE_NO_STATE.jsx` => Simple function component that can be used as a template. This are components that do not hold state. If in doubt use the `SAMPLE.jsx` version.
-    - `/src/components/SetAxios.jsx` => File that contains code that is run before and after each ajax call.
   - `/src/images` => All static images called by the components
   - `/src/js` => Any helper .js file used by the application
 
@@ -35,7 +34,6 @@ In order to keep the project organized, the project has the following structure:
     - `/src/scss/index.scss` => List of Bootstrap includes. Disable any scss for Bootstrap features that are not in use
   - `/src/App.jsx` => Contains any items that should be on all "pages" including header and footers
   - `/src/AppNavBar.jsx` => Main navigation bar for the entire application
-  - `/src/AppRouteNames.js` => Lists all the routes so they can imported into both the AppRoutes and AppNavBar files.
   - `/src/AppRoutes.jsx` => Contains the routing for the entire application
   - `/src/index.jsx` => File that inserts React application into the HTML. This normally doesn't need to be modified
   - `/src/feature-flags.config.js` => File that contains feature flags and configuration
@@ -105,12 +103,6 @@ More information on how to use feature flags is available at the [feature flag r
 
 Add or remove entries in the `environments` array in `/src/js/whichEnv` to match url patterns.
 
-### Set Axios settings
-
-If needed, set code to be run before and/or after an ajax call in `/src/components/SetAxios.jsx`. This can be handy to display global errors.
-
-Add the methods and urls for ajax calls in `js/axios.config.js`.
-
 ### Set Bootstrap SCSS
 
 In `/src/scss/index.scss` comment out lines for Bootstrap items that aren't used and remove comments for Bootstrap items that are used.
@@ -123,5 +115,5 @@ The main `/README.md` file should be reviewed and updated.
 
 Files and directories that are in all caps and snake case are only to get you started. Normally names for all files and directories that in a React application should be camel case with Components staring with a capital letter. These sample directories can be removed or renamed.
 
-The only exceptions to this rule are the `README.md`, `LICENSE.md `, `CONTRIBUTING.md`, `CODEOWNERS`
+The only exceptions to this rule are the `/README.md`, `LICENSE.md `, `CONTRIBUTING.md`, `CODEOWNERS`
 files. These files should be modified without changing the file name.

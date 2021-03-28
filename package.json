@@ -17,6 +17,7 @@
     "react-dom": "^17.0.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1",
     "umn_web_template_components": "file:modules/umn_web_template_components-2.0.0.tgz"
   },
   "devDependencies": {
