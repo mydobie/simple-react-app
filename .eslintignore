@@ -1,0 +1,9 @@
+/build/**
+/coverage/**
+/node_modules/**
+package-lock.json
+src/serviceWorker.js
+src/setupTests.js
+npm-cache/
+lint-staged.config.js
+react-router-dom.js
