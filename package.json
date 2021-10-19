@@ -1,7 +1,7 @@
 {
-  "name": "simple-react-redux-app",
+  "name": "simple-react-app",
   "description": "",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "license": "MIT",
   "repository": "https://github.com/mydobie/simple-react-redux-app",
   "engines": {
