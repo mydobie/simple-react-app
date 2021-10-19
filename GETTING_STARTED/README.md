@@ -38,6 +38,7 @@ In order to keep the project organized, the project has the following structure:
     - `/src/scss/_variables.scss` => Overrides of Bootstrap main variables
     - `/src/scss/_custom.scss` => Custom css rules. Note this should be application-wide rules
     - `/src/scss/index.scss` => List of Bootstrap includes. Disable any scss for Bootstrap features that are not in use
+
   - `/src/App.tsx` => Contains any items that should be on all "pages" including header and footers
   - `/src/AppNavBar.tsx` => Main navigation bar for the entire application
   - `/src/AppRouteNames.ts` => Lists all the routes so they can imported into both the AppRoutes and AppNavBar files.
