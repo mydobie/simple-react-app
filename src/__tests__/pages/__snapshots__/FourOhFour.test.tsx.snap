@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`404 tests Snapshot test on initial load 1`] = `
+<div>
+  <div
+    class="row"
+    data-testid="404PageContainer"
+  >
+    <div
+      class="col"
+    >
+      <h1>
+        Page not found
+      </h1>
+      <p>
+        The page you requested could not be found.
+      </p>
+      <p
+        style="text-align: center;"
+      >
+        <img
+          alt=""
+          class="App-logo"
+          src="page_not_found.svg"
+        />
+      </p>
+    </div>
+  </div>
+</div>
+`;
