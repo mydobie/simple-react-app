@@ -21,11 +21,10 @@ const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
       <Route path={ROUTES.HOME} exact>
         <Home />
       </Route>
-
       <Route path={ROUTES.VERSION}>
         <Version />
       </Route>
-
+      {/* // START FEATURE FLAGS */}
       {!isProd() ? (
         <Route path={ROUTES.FEATURE_FLAGS}>
           <FeatureFlagsUI
@@ -35,7 +34,7 @@ const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
           />
         </Route>
       ) : null}
-
+      {/* // END FEATURE FLAGS */}
       <Route path='/'>
         <FourOhFour />
       </Route>

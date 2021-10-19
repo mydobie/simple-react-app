@@ -17,15 +17,14 @@ In order to keep the project organized, the project has the following structure:
   - `/src/__mocks__` => Files called instead of a package during the unit tests
   - `/src/__tests__` => Jest test files. Note: there should be a file for each .jsx and .js file inside the `src` directory.
 
-    - `/src/__tests__/SAMPLE_REDUX.test.tsx` => Start of a test for a component that is connected to the redux store. This can be used as a template.
-    - `/src/__tests__/SAMPLE.test.tsx` => Start of a test for a component that is not connected to the redux store. This can be used as a template.
+    - `/src/__tests__/components/SAMPLE_COMPONENT.test.tsx` => Start of a test for a component. This can be used as a template.
+    - `/src/__tests__/pages/SAMPLE_PAGE.test.tsx` => Start of a test for a page. This can be used as a template.
 
   - `/src/__test_fixtures__` => Fixture files used during unit tests
 
   - `/src/components` => Child and leaf components. In larger projects, there may be sub folders
 
-    - `/src/components/SAMPLE.tsx` => Sample component that can be used as a template.
-    - `/src/components/SAMPLE_REDUX.tsx` => Sample component connected to the redux store that can be used as a template.
+    - `/src/components/SAMPLE_COMPONENT.tsx` => Sample component that can be used as a template.
     - `/src/components/SetAxios.tsx` => File that contains code that is run before and after each ajax call.
 
   - `/src/images` => All static images called by the components
@@ -39,12 +38,6 @@ In order to keep the project organized, the project has the following structure:
     - `/src/scss/_variables.scss` => Overrides of Bootstrap main variables
     - `/src/scss/_custom.scss` => Custom css rules. Note this should be application-wide rules
     - `/src/scss/index.scss` => List of Bootstrap includes. Disable any scss for Bootstrap features that are not in use
-
-  - `/src/redux` => Contains files related to the redux store
-    - `/src/redux/store.ts` => Creates the redux store. There normally isn't a need to modify this file
-    - `/src/redux/reducers` => Contains reducers used to put information into the redux store
-      - `/src/redux/reducers/index.ts` => Calls all the separate reducer files and connects them to the store.
-    - `/src/selectors` => Contains selector files to pull information out of the store.
   - `/src/App.tsx` => Contains any items that should be on all "pages" including header and footers
   - `/src/AppNavBar.tsx` => Main navigation bar for the entire application
   - `/src/AppRouteNames.ts` => Lists all the routes so they can imported into both the AppRoutes and AppNavBar files.

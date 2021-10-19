@@ -37,11 +37,13 @@ const App = (): ReactElement => {
   const basename = '';
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   React.useEffect(() => {
+    // START FEATURE FLAGS
     loadFeatureFlags({
       features: featureFlagArray,
       overrides: JSON.parse(process.env.REACT_APP_FEATURE_FLAGS ?? '[]'),
       persist: process.env.REACT_APP_FEATURE_FLAGS_PERSIST === 'true',
     });
+    // END FEATURE_FLAGS
   }, []);
 
   return (
