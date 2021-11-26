@@ -55,6 +55,12 @@ In order to keep the project organized, the project has the following structure:
 
 In order to make this sample application into a real application, the following steps should be taken.
 
+### Set coverage level
+
+Because this is a template project, the coverage was set to check that only 65% of the lines are covered during testing. This is because non-user facing items like items in the `src/js` and `redux` directories usually don't need to have tests written against them. See the `Testing` section in `CONTRIBUTING.md` for more information On the testing philosophy.
+
+It is recommended that the value in `utils/testCoverage.js` is set to at least 85%.
+
 ### Set HTML
 
 In the `public/index.html` file, change the following:
