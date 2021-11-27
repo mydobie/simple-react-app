@@ -1,7 +1,7 @@
 // Contains routing for entire application
 
 import React, { ReactElement } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { FeatureFlagsUI } from 'feature-flags/react';
 import { isProd } from './js/whichEnv';
 
@@ -17,28 +17,27 @@ interface Props {
 
 const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
   <>
-    <Switch>
-      <Route path={ROUTES.HOME} exact>
-        <Home />
-      </Route>
-      <Route path={ROUTES.VERSION}>
-        <Version />
-      </Route>
+    <Routes>
+      <Route path={ROUTES.HOME} element={<Home />} />
+
+      <Route path={ROUTES.VERSION} element={<Version />} />
+
       {/* // START FEATURE FLAGS */}
       {!isProd() ? (
-        <Route path={ROUTES.FEATURE_FLAGS}>
-          <FeatureFlagsUI
-            onFeatureChange={() => {
-              onFeatureChange(); // this is passed to AppRoutes to force an app rerender
-            }}
-          />
-        </Route>
+        <Route
+          path={ROUTES.FEATURE_FLAGS}
+          element={
+            <FeatureFlagsUI
+              onFeatureChange={() => {
+                onFeatureChange(); // this is passed to AppRoutes to force an app rerender
+              }}
+            />
+          }
+        />
       ) : null}
       {/* // END FEATURE FLAGS */}
-      <Route path='/'>
-        <FourOhFour />
-      </Route>
-    </Switch>
+      <Route path='*' element={<FourOhFour />} />
+    </Routes>
   </>
 );
 

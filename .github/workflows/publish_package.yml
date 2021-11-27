@@ -1,4 +1,4 @@
-name: Publish NPM Package
+name: Publish Package
 on:
   workflow_run:
     workflows:
@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: npm run d
 
-      # Uncomment is creating an npm package
+      # Uncomment if creating an npm package
       # - name: Build package
       #   run: bash  utils/buildPackage.sh
 
@@ -49,10 +49,7 @@ jobs:
           tag: v${{ steps.package-version.outputs.current-version}}
 
       - name: Build pages
-        run: node utils/buildForGHPages.js
-
-      - name: Fix paths in index.html
-        run: node utils/resetPathIndex.js
+        run: npm run build:hash
 
       - name: Deploy to GH pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
