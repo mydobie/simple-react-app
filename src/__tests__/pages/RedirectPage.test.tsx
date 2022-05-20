@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/react-in-jsx-scope */
-import { axe } from 'jest-axe';
 import { render, screen, fireEvent, act } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import RedirectPage from '../../pages/RedirectPage';
 import ROUTES from '../../AppRouteNames';
 
-jest.setTimeout(6000);
+jest.useFakeTimers();
 
 const mockedUsedNavigate = jest.fn();
 
@@ -17,17 +16,6 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Redirect Page tests', () => {
-  test('Is accessible', async () => {
-    const { container } = render(
-      <MemoryRouter>
-        <RedirectPage />
-      </MemoryRouter>
-    );
-    await act(async () => {
-      const results = await axe(container);
-      expect(results).toHaveNoViolations();
-    });
-  });
   test('User is forwarded to homepage after button click', () => {
     render(
       <MemoryRouter>
@@ -40,14 +28,15 @@ describe('Redirect Page tests', () => {
     });
   });
 
-  test('User is forwarded to homepage after 5 seconds', async () => {
+  test('User is forwarded to homepage after 5 seconds', () => {
     render(
       <MemoryRouter>
         <RedirectPage />
       </MemoryRouter>
     );
-    await act(async () => {
-      await new Promise((r) => setTimeout(r, 5500));
+    act(() => {
+      // EXAMPLE: Use of run timers
+      jest.runAllTimers();
       expect(mockedUsedNavigate).toHaveBeenCalledWith(ROUTES.HOME);
     });
   });

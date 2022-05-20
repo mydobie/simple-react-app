@@ -2,7 +2,7 @@
 
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import notFoundImage from '../images/page_not_found.svg';
+import { PatchQuestion } from 'react-bootstrap-icons';
 
 // *** Main component ***
 const FourOhFour = (/* props */): ReactElement => (
@@ -11,7 +11,7 @@ const FourOhFour = (/* props */): ReactElement => (
       <h1>Page not found</h1>
       <p>The page you requested could not be found.</p>
       <p style={{ textAlign: 'center' }}>
-        <img src={notFoundImage} className='App-logo' alt='' />
+        <PatchQuestion size={200} />
       </p>
     </Col>
   </Row>
