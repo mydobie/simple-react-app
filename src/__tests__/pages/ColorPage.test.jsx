@@ -4,7 +4,6 @@ import { axe } from 'jest-axe';
 
 import { MemoryRouter as Router } from 'react-router';
 import ReactRouter from 'react-router-dom';
-// import { createMemoryHistory } from 'history';
 import ColorPage from '../../pages/ColorPage';
 
 const isValidMessage = (container) =>
@@ -103,4 +102,6 @@ describe('Sample Color Page component tests', () => {
     expect(isInvalidMessage(container)).not.toBeInTheDocument();
     expect(screen.getByTestId('homeButton')).toBeEnabled();
   });
+  // EXAMPLE: A todo/pending test
+  test.todo('This is a sample to do test');
 });

@@ -1,12 +1,15 @@
-// The purpose is to make an ajax and store state call WITHOUT redux
-// Copy what ever is done for the non-redux dinos page
 import React, { ReactElement, useState, useEffect } from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Image, Button } from 'react-bootstrap';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-dark.css';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Clipboard, Clipboard2Check } from 'react-bootstrap-icons';
+import styled from 'styled-components';
 import { universitiesAPI, ajaxFinally } from '../js/axios.config';
 import Alert from '../components/Alert';
 import Loading from '../components/Loading';
+import mortarboardImg from '../images/mortarboard.svg';
 
 // ** Main component type */
 type UniversityType = {
@@ -18,22 +21,56 @@ type UniversityType = {
   web_pages?: string[];
 };
 
+// EXAMPLE: Styled existing component
+// use styled.button instead of styled(Button) if you want to use a native button
+const CopyButton = styled(Button)`
+  position: absolute;
+  right: 20px;
+  top: 20px;
+`;
+
 // EXAMPLE: Displaying result of ajax call to screen
-const RawJSON = ({ json }: { json: string }): ReactElement => (
-  <Card>
-    <Card.Header>Returned JSON</Card.Header>
-    <Card.Body>
-      <Card.Text>{json}</Card.Text>
-    </Card.Body>
-  </Card>
-);
+const RawJSON = ({ json }: { json: object }): ReactElement => {
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
+  useEffect(() => {
+    if (copied) {
+      setTimeout(() => setCopied(false), 3000);
+    }
+  }, [copied]);
+  const jsonString = JSON.stringify(json, null, 2);
+  return (
+    <Card>
+      <Card.Header>Returned JSON</Card.Header>
+      <div style={{ position: 'relative' }}>
+        <CopyToClipboard text={jsonString} onCopy={() => setCopied(true)}>
+          <CopyButton variant='light'>
+            {copied ? <Clipboard2Check /> : <Clipboard />}
+            <span className='visually-hidden sr-only'>
+              {copied ? 'Copied' : 'Copy to clipboard'}
+            </span>
+          </CopyButton>
+        </CopyToClipboard>
+        <pre>
+          <code className={`language-javascript`}>
+            {/* EXAMPLE: Format JSON response */}
+            {jsonString}
+          </code>
+        </pre>
+      </div>
+    </Card>
+  );
+};
 
 // *** Main component ***
 const UniversityPage = (): ReactElement => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null); // string or null
   const [univList, setUnivList] = useState([]);
-  const [raw, setRaw] = useState<string | null>(null);
+  const [raw, setRaw] = useState<object | null>(null);
 
   useEffect(() => {
     const { CancelToken } = axios;
@@ -78,24 +115,36 @@ const UniversityPage = (): ReactElement => {
   }, []);
 
   return (
-    <Col>
+    <>
       <Row>
         <h1>Minnesota Universities</h1>
-        {loading ? <Loading /> : null}
-        {error ? <Alert>{error}</Alert> : null}
-
-        {!loading ? (
-          <ul>
-            {univList.map((university) => (
-              <li key={university} data-testid='uniListItem'>
-                {university}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-        {raw ? <RawJSON json={JSON.stringify(raw)} /> : null}
       </Row>
-    </Col>
+      <Row>
+        <Col xs={2}>
+          {/* EXAMPLE: Include an image */}
+          <Image src={mortarboardImg} alt='' fluid />
+        </Col>
+        <Col>
+          {/* EXAMPLE: Using conditional display logic (aka show if) */}
+          {loading ? <Loading /> : null}
+          {error ? <Alert>{error}</Alert> : null}
+
+          {!loading ? (
+            <ul>
+              {/* EXAMPLE: Using map to display items from an array */}
+              {univList.map((university) => (
+                <li key={university} data-testid='uniListItem'>
+                  {university}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </Col>
+      </Row>
+      <Row>
+        <Col>{raw ? <RawJSON json={raw} /> : null}</Col>
+      </Row>
+    </>
   );
 };
 
