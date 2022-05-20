@@ -41,6 +41,7 @@ const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
         <Route
           path={ROUTES.FEATURE_FLAGS}
           element={
+            // EXAMPLE: Feature flag UI
             <FeatureFlagsUI
               onFeatureChange={() => {
                 onFeatureChange(); // this is passed to AppRoutes to force an app rerender

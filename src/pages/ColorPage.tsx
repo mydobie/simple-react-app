@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-// EXAMPLE: Form validation page (Select colors)
-
 /*
 Example of an application that validates form input.
 If the field is empty, no warning is shown and the submit button is inactive
@@ -25,7 +22,7 @@ const ColorPage = (): ReactElement => {
   const [isValid, setIsValid] = useState(false);
 
   // EXAMPLE: Event listener
-  const onColorChange = useCallback((enteredColor) => {
+  const onColorChange = useCallback((enteredColor: string) => {
     // EXAMPLE: Form field validation
     if (enteredColor === '') {
       setIsValid(false);
@@ -82,6 +79,7 @@ const ColorPage = (): ReactElement => {
               isValid={isValid}
               isInvalid={isInvalid}
               onChange={(event) => onColorChange(event.target.value)}
+              aria-invalid={color ? isInvalid : undefined}
             />
             <Form.Control.Feedback
               data-testid='validMessage'
