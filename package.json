@@ -39,6 +39,7 @@
     "axios-mock-adapter": "^1.19.0",
     "cypress": "^9.6.1",
     "cypress-axe": "^0.14.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.1.0",

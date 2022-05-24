@@ -1,5 +1,4 @@
-/* global cy before*/
-describe('Color page', () => {
+describe('University page', () => {
   before(() => {
     // EXAMPLE: Cypress - mock API call
     cy.intercept('GET', 'http://universities.hipolabs.com/*', {
