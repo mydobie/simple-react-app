@@ -6,34 +6,37 @@ This file contains directions on how to modify the files in this project when st
 
 In order to keep the project organized, the project has the following structure:
 
-- `/util` => All helper files not used directly by the the application
+- `/util/` => All helper files not used directly by the the application
 - `/.env` => Global variables available to the application. These variables are set at build time.
-- `/public` => Static files used by the application but not imported. Normally a parent html file and the .ico file
+- `/cypress/` => All files used by Cypress to run the tests
+  - `/cypress/fixtures/` => Fixture files used by the Cypress tests
+  - `/cypress/integration/` => Cypress functional tests
+- `/public/` => Static files used by the application but not imported. Normally a parent html file and the .ico file
 
-  - `/public/__fixtures__` => Static json files returned during an ajax call when the application is run in "mock" mode. Note: These files are not included in the built version of the application.
+  - `/public/__fixtures__/` => Static json files returned during an ajax call when the application is run in "mock" mode. Note: These files are not included in the built version of the application.
 
-- `/src` => All files used by the application and for testing
+- `/src/` => All files used by the application and for testing
 
-  - `/src/__mocks__` => Files called instead of a package during the unit tests
-  - `/src/__tests__` => Jest test files. Note: there should be a file for each .jsx and .js file inside the `src` directory.
+  - `/src/__mocks__/` => Files called instead of a package during the unit tests
+  - `/src/__tests__/` => Jest unit test files. Note: there should be a file for each .jsx and .js file inside the `src` directory.
 
-    - `/src/__tests__/components/SAMPLE_COMPONENT.test.tsx` => Start of a test for a component. This can be used as a template.
-    - `/src/__tests__/pages/SAMPLE_PAGE.test.tsx` => Start of a test for a page. This can be used as a template.
+    - `/src/__tests__/components/SAMPLE_COMPONENT.test.tsx` => Start of a unit test for a component. This can be used as a template.
+    - `/src/__tests__/pages/SAMPLE_PAGE.test.tsx` => Start of a unit test for a page. This can be used as a template.
 
-  - `/src/__test_fixtures__` => Fixture files used during unit tests
+  - `/src/__test_fixtures__/` => Fixture files used during unit tests
 
-  - `/src/components` => Child and leaf components. In larger projects, there may be sub folders
+  - `/src/components/` => Child and leaf components. In larger projects, there may be sub folders
 
     - `/src/components/SAMPLE_COMPONENT.tsx` => Sample component that can be used as a template.
     - `/src/components/SetAxios.tsx` => File that contains code that is run before and after each ajax call.
 
-  - `/src/images` => All static images called by the components
-  - `/src/js` => Any helper .js file used by the application
+  - `/src/images/` => All static images called by the components
+  - `/src/js` => Any helper .js or .ts file used by the application
     - `/src/js/axios.config.ts` => Ajax based helper functions
     - `/src/js/helpers.ts` => Javascript helpers used across the application
     - `/src/js/whichEnv.ts` => Helper methods to determine what environment the application is running in based in url patterns.
-  - `/src/pages` => High level components that are called by the router
-  - `/src/scss` => Contains application-wide (aka theming ) scss.
+  - `/src/pages/` => High level components that are called by the router
+  - `/src/scss/` => Contains application-wide (aka theming ) scss.
 
     - `/src/scss/_variables.scss` => Overrides of Bootstrap main variables
     - `/src/scss/_custom.scss` => Custom css rules. Note this should be application-wide rules
@@ -45,9 +48,8 @@ In order to keep the project organized, the project has the following structure:
   - `/src/AppRoutes.tsx` => Contains the routing for the entire application
   - `/src/index.tsx` => File that inserts React application into the HTML. This normally doesn't need to be modified
 
-- `/DOCKER_DEV_ENV` => Files to develop inside a docker container.
-  - `/DOCKER_DEV_ENV/README.md` => Directions on how to set up and run a docker container for development
-- `/GETTING_STARTED` => Files on how to get started and set-up a development environment
+- `/DOCKER_DEV_ENV/` => Files to develop inside a docker container.
+- `/GETTING_STARTED/` => Files on how to get started and set-up a development environment
 
 ---
 

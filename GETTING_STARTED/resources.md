@@ -17,7 +17,7 @@ Learning react and redux can be confusing. The following tutorials are a place t
 
 ### Redux
 
-- [Basic Tutorial - React-Redux](https://react-redux.js.org/introduction/basic-tutorial)
+- [React Redux Quick Start](https://react-redux.js.org/tutorials/quick-start)
 - [Intro to Redux and how state is updated ... ](https://www.freecodecamp.org/news/an-intro-to-redux-and-how-state-is-updated-in-a-redux-application-839c8334d1b1/)
 
 ### Javascript Katas
