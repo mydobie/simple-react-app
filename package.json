@@ -2,7 +2,7 @@
   "name": "simple-react-app",
   "homepage": "./",
   "description": "",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "license": "MIT",
   "repository": "https://github.com/mydobie/simple-react-app",
   "engines": {
@@ -41,6 +41,7 @@
     "axios-mock-adapter": "^1.19.0",
     "cypress": "^9.6.1",
     "cypress-axe": "^0.14.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.1.0",
@@ -156,7 +157,17 @@
         "error",
         "as-needed"
       ]
-    }
+    },
+    "overrides": [
+      {
+        "extends": [
+          "plugin:cypress/recommended"
+        ],
+        "files": [
+          "cypress/**/*.js"
+        ]
+      }
+    ]
   },
   "stylelint": {
     "extends": [

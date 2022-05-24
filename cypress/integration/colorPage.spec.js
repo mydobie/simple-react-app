@@ -1,4 +1,3 @@
-/* global cy before*/
 describe('Color page', () => {
   before(() => {
     cy.visit('/color');
@@ -84,6 +83,9 @@ describe('Color page', () => {
   });
 
   it('Entering color in URL is set in the input box', () => {
+    // returning false here prevents Cypress from
+    // failing the test
+    // Cypress.on('uncaught:exception', (/* err, runnable */) => false);
     cy.visit('/color/red');
     cy.get('#myColor').should('have.value', 'red');
     cy.get('#myColor').clear();
