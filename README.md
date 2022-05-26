@@ -27,7 +27,7 @@ At the root of the project run the following commands in a terminal to verify yo
 
 ## Versioning
 
-The version of the application is done automatically when merging a pull request into the main branch. Do not increment the version on the package.json file manually. See [Contributing.md](CONTRUBUTING.md) for more information.
+The version of the application is done automatically when merging a pull request into the main branch. Do not increment the version on the package.json file manually. See [Contributing.md](CONTRIBUTING.md) for more information.
 
 ## Node
 
@@ -147,4 +147,5 @@ When a pull request is merged into the `main` branch, the following is automatic
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ---
+
 Based on template version 3.0.0

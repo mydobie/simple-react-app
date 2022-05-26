@@ -1,4 +1,3 @@
-/* global cy before*/
 describe('Sample Test', () => {
   before(() => {
     cy.visit('/');

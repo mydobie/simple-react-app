@@ -41,6 +41,7 @@
     "cypress-axe": "^0.14.0",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
@@ -154,7 +155,17 @@
         "error",
         "as-needed"
       ]
-    }
+    },
+    "overrides": [
+      {
+        "extends": [
+          "plugin:cypress/recommended"
+        ],
+        "files": [
+          "cypress/**/*.js"
+        ]
+      }
+    ]
   },
   "stylelint": {
     "extends": [
