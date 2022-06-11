@@ -21,14 +21,11 @@ const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
       <Route path={ROUTES.HOME} element={<Home />} />
       <Route path='/home' element={<Navigate to={ROUTES.HOME} />} />
       <Route path={ROUTES.VERSION} element={<Version />} />
-      {/* EXAMPLE: Use which env methods to determine what is displayed */}
-
       {/* // START FEATURE FLAGS */}
       {!isProd() ? (
         <Route
           path={ROUTES.FEATURE_FLAGS}
           element={
-            // EXAMPLE: Feature flag UI
             <FeatureFlagsUI
               onFeatureChange={() => {
                 onFeatureChange(); // this is passed to AppRoutes to force an app rerender
