@@ -7,4 +7,6 @@ src/setupTests.js
 npm-cache/
 lint-staged.config.js
 react-router-dom.js
+cypress.config.ts
 public/skipMenu
+public/versions.json
