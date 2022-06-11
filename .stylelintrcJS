@@ -1,0 +1,11 @@
+{
+  "customSyntax": "@stylelint/postcss-css-in-js",
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-prettier",
+    "stylelint-config-styled-components"
+  ],
+  "rules": {
+    "scss/operator-no-unspaced": null
+  }
+}

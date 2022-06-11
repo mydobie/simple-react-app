@@ -12,6 +12,10 @@ import Version from './pages/Version';
 import Color from './pages/ColorPage';
 import RedirectPage from './pages/RedirectPage';
 import University from './pages/UniversityPages';
+import Flowers from './pages/FlowerPage';
+import Tulips from './components/Flowers/Tulips';
+import Daisies from './components/Flowers/Daisies';
+import AnimalPage from './pages/AnimalPage';
 import FourOhFour from './pages/FourOhFour';
 
 interface Props {
@@ -31,9 +35,33 @@ const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
           element={<Color />}
         />
       </Route>
+      {/* EXAMPLE: Nested routes */}
+      <Route path={ROUTES.FLOWERS} element={<Flowers />}>
+        <Route index element={<Tulips />} />
+        <Route path={ROUTES.FLOWER_TABS.TULIPS} element={<Tulips />} />
+        <Route path={ROUTES.FLOWER_TABS.DAISIES} element={<Daisies />} />
+      </Route>
       <Route path={ROUTES.REDIRECT} element={<RedirectPage />} />
       {/* EXAMPLE: Route to a component without props */}
       <Route path={ROUTES.UNIVERSITIES} element={<University />} />
+      {/* EXAMPLE: Route optional parameters */}
+      {/* Simulates:  /animal/:animaltype?/name/:animalname? */}
+      <Route path={ROUTES.ANIMAL} element={<AnimalPage />}>
+        <Route
+          path={`:${ROUTES.ANIMAL_PARAMS.ANIMAL_TYPE}`}
+          element={<AnimalPage />}
+        >
+          <Route
+            path={`${ROUTES.ANIMAL_PARAMS.ANIMAL_NAME}`}
+            element={<AnimalPage />}
+          >
+            <Route
+              path={`:${ROUTES.ANIMAL_PARAMS.ANIMAL_NAME}`}
+              element={<AnimalPage />}
+            />
+          </Route>
+        </Route>
+      </Route>
       <Route path={ROUTES.VERSION} element={<Version />} />
       {/* EXAMPLE: Use which env methods to determine what is displayed */}
       {/* // START FEATURE FLAGS */}

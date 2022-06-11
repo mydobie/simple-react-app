@@ -49,6 +49,22 @@ const AppNavBar = (): ReactElement => (
           Redirect
         </NavLink>
       </Nav.Item>
+      <Nav.Item>
+        <NavLink
+          className={({ isActive }) => activeClass(isActive)}
+          to={ROUTES.FLOWERS}
+        >
+          Flowers (Tabs)
+        </NavLink>
+      </Nav.Item>
+      <Nav.Item>
+        <NavLink
+          className={({ isActive }) => activeClass(isActive)}
+          to={ROUTES.ANIMAL}
+        >
+          Animal (Nested routes)
+        </NavLink>
+      </Nav.Item>
 
       {!isProd() ? (
         <Nav.Item>

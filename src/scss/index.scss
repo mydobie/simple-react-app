@@ -1,7 +1,16 @@
+// Import functions first incase they are needed in custom variables
+@import '../../node_modules/bootstrap/scss/functions';
+
 /************* Bootstrap overrides *************/
 @import 'variables';
 
-// @import '../../node_modules/bootstrap/scss/functions';
+/************* Bootstrap imports *************/
+// How to create this file:
+// Go to node_modules/bootstrap/scss/bootstrap.scss
+// Copy the contents of that file
+// Add `../../node/modules/bootstrap/scss/` to each line so correctly it references the bootstrap file
+
+// See: https://getbootstrap.com/docs/5.0/customize/sass/#importing
 
 /*!
  * Bootstrap v5.1.1 (https://getbootstrap.com/)
@@ -13,7 +22,6 @@
 // scss-docs-start import-stack
 
 // Configuration
-@import '../../node_modules/bootstrap/scss/functions';
 @import '../../node_modules/bootstrap/scss/variables';
 @import '../../node_modules/bootstrap/scss/mixins';
 @import '../../node_modules/bootstrap/scss/utilities';
