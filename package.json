@@ -24,6 +24,7 @@
     "Sass is pinned to a lower version otherwise it breaks on the bootstrap build"
   ],
   "devDependencies": {
+    "@stylelint/postcss-css-in-js": "^0.38.0",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.1",
@@ -60,8 +61,12 @@
     "stylelint": "^14.1.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
     "typescript": "^4.5.2",
     "uglify-js": "^3.14.3"
+  },
+  "overrides": {
+    "cypress": "$cypress"
   },
   "// resolutions": [
     "Pin a package to a particular version.",
@@ -85,7 +90,7 @@
     "cypress": "cypress open",
     "cypress:run": "cypress run",
     "// ----------------------------------------------------------2": "",
-    "lint": "npm run lint:js && npm run prettier:all && npm run lint:scss:all",
+    "lint": "npm run lint:js && npm run prettier:all && npm run lint:scss:all && npm run lint:scssinjs:all && echo 'No linting errors found.'",
     "lint:fix": "npm run prettier:fix:all && npm run lint:js:fix &&  npm run lint:scss:fix:all",
     "lint:watch": "onchange 'src/**/*.*' -- npm run lint:fix",
     "// ----------------------------------------------------------3": "",
@@ -96,8 +101,10 @@
     "prettier:fix": "prettier  --ignore-path ./.eslintignore --write",
     "prettier:fix:all": "npm run prettier:fix '**/*.+(js|jsx|ts|tsx|html|css|scss|json|md)'",
     "lint:scss": "stylelint --ignore-path ./.eslintignore ",
+    "lint:scssinjs": "npm run lint:scss -- --config .stylelintrcJS ",
     "lint:scss:all": "npm run lint:scss './**/*.+(css|scss)'",
-    "lint:scss:fix:all": "npm run lint:scss -- --fix './**/*.+(css|scss)'",
+    "lint:scssinjs:all": "npm run lint:scssinjs  './**/*.+(ts|tsx|js|jsx)'",
+    "lint:scss:fix:all": "npm run lint:scss -- --fix './**/*.+(css|scss)' && npm run lint:scssinjs -- --fix './**/*.+(ts|tsx|js|jsx)'",
     "// ----------------------------------------------------------4": "",
     "clean": "rm -rf node_modules && rm -f package-lock.json && npm run d",
     "uglify": "uglifyjs ",

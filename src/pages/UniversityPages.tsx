@@ -21,7 +21,7 @@ type UniversityType = {
   web_pages?: string[];
 };
 
-// EXAMPLE: Styled existing component
+// EXAMPLE: Using styled-components with existing component
 // use styled.button instead of styled(Button) if you want to use a native button
 const CopyButton = styled(Button)`
   position: absolute;
