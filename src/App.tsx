@@ -28,11 +28,7 @@ const Header = (): ReactElement => (
   </header>
 );
 
-const Footer = (): ReactElement => (
-  <footer>
-    <Card bg='light' style={{ marginTop: '20px' }}></Card>
-  </footer>
-);
+const Footer = (): ReactElement => <footer></footer>;
 
 const App = (): ReactElement => {
   const basename = '';

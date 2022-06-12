@@ -10,6 +10,7 @@ import { isProd } from './js/whichEnv';
 const activeClass = (isActive: boolean) =>
   `nav-link ${isActive ? 'active' : ''}`;
 
+// EXAMPLE: Navigation bar
 const AppNavBar = (): ReactElement => (
   <nav>
     <Nav>

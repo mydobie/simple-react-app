@@ -1,5 +1,5 @@
 export default {
   HOME: '/',
-  VERSION: '/version',
-  FEATURE_FLAGS: '/features',
+  VERSION: 'version',
+  FEATURE_FLAGS: 'features',
 };

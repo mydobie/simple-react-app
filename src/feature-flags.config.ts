@@ -20,10 +20,4 @@ Add all feature flags in the following format:
 ]
 */
 
-export const featureFlagArray: [FlagType] | [] = [
-  // {
-  //   id: 'COLORS', // id used across the app for this feature
-  //   active: false, // should the feature be enabled?
-  //   description: 'A list of all the primary and secondary colors.', // description shown for this feature
-  // },
-];
+export const featureFlagArray: [FlagType] | [] = [];
