@@ -19,7 +19,7 @@ import SetAxios from './components/SetAxios';
 import './scss/index.scss';
 
 const Header = (): ReactElement => (
-  <header>
+  <header data-testid='header'>
     <Card bg='dark' text='white'>
       <Card.Body>
         <Card.Title>Sample react application</Card.Title>

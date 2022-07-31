@@ -1,7 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
 
 import { axe } from 'jest-axe';
-import { act, render, screen, waitFor } from '@testing-library/react';
+import {
+  act,
+  render,
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { universitiesAPI } from '../../js/axios.config';
@@ -50,7 +56,9 @@ describe('Sample Universities Page component tests', () => {
   test('Expected number of universities are shown and error is not shown', async () => {
     mock.onGet(universitiesAPI.url()).replyOnce(200, mockUniversities);
     render(<UniversitiesPage />);
-    await waitFor(() => screen.queryByTestId('dinoSelectList'));
+
+    await waitForElementToBeRemoved(() => screen.getByTestId('Loading'));
+
     const uniListItems = screen.getAllByTestId('uniListItem');
     expect(uniListItems).toHaveLength(mockUniversities.length);
 

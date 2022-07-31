@@ -14,7 +14,7 @@ const RedirectPage = (): ReactElement => {
   useEffect(() => {
     if (count <= 0) {
       // EXAMPLE: Automatically forwarding to a route (without a button click)
-      return navigate(ROUTES.HOME);
+      navigate(ROUTES.HOME);
       return;
     }
     const timer = setInterval(() => {

@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { axe } from 'jest-axe';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import fs from 'fs';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -31,8 +31,8 @@ describe('Version tests', () => {
     const packageJson = JSON.parse(packageData.toString());
     const { version, name } = packageJson;
 
-    await act(async () => {
-      render(<Version />);
+    render(<Version />);
+    await waitFor(() => {
       expect(screen.getByText(name)).toBeInTheDocument();
       expect(screen.getByText(version)).toBeInTheDocument();
       expect(screen.getByText('foo')).toBeInTheDocument();

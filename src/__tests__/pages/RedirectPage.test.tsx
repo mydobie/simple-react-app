@@ -34,10 +34,8 @@ describe('Redirect Page tests', () => {
         <RedirectPage />
       </MemoryRouter>
     );
-    act(() => {
-      // EXAMPLE: Use of run timers
-      jest.runAllTimers();
+    setTimeout(() => {
       expect(mockedUsedNavigate).toHaveBeenCalledWith(ROUTES.HOME);
-    });
+    }, 5005);
   });
 });
