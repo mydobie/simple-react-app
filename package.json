@@ -77,7 +77,7 @@
     "See https://www.npmjs.com/package/npm-force-resolutions"
   ],
   "scripts": {
-    "d": "npm i",
+    "d": "npm i --force",
     "installDependencies": "npm run d",
     "start": "npm run buildVersionsPage && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
     "start:mock": "REACT_APP_USE_MOCKS=true npm run start",
