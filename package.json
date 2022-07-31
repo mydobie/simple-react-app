@@ -20,11 +20,9 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.0.2",
     "react-router-dom": "^6.0.2",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "skip-menu-react": "mydobie/skipmenureact#npmbuild1.0.1"
   },
-  "// devDependencies": [
-    "Sass is pinned to a lower version otherwise it breaks on the bootstrap build"
-  ],
   "devDependencies": {
     "@cypress/instrument-cra": "^1.4.0",
     "@stylelint/postcss-css-in-js": "^0.38.0",
@@ -43,10 +41,10 @@
     "axios-mock-adapter": "^1.21.1",
     "cypress": "^10.3.1",
     "cypress-axe": "^1.0.0",
-    "eslint-plugin-cypress": "^2.12.1",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.0.0",
@@ -71,11 +69,6 @@
   "overrides": {
     "cypress": "$cypress"
   },
-  "// resolutions": [
-    "Pin a package to a particular version.",
-    "Only use to resolve security advisories",
-    "See https://www.npmjs.com/package/npm-force-resolutions"
-  ],
   "scripts": {
     "d": "npm i --force",
     "installDependencies": "npm run d",
