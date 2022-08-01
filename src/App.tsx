@@ -9,7 +9,7 @@ const Router =
   process.env.REACT_APP_USE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter;
 
 // START FEATURE FLAGS
-import { loadFeatureFlags, isFeatureActive } from 'feature-flags/react';
+import { loadFeatureFlags } from 'feature-flags/react';
 import { featureFlagArray } from './feature-flags.config';
 // END FEATURE FLAGS
 
@@ -30,23 +30,7 @@ const Header = (): ReactElement => (
   </header>
 );
 
-const Footer = (): ReactElement => {
-  // EXAMPLE: Show/Hide based on feature flag
-  const isColors = isFeatureActive('COLORS');
-  return (
-    <footer>
-      <Card bg='light' style={{ marginTop: '20px' }}>
-        {isColors ? (
-          <>
-            <Card.Body>
-              <strong>Colors:</strong> Red, Orange, Yellow, Green, Blue, Violet
-            </Card.Body>
-          </>
-        ) : null}
-      </Card>
-    </footer>
-  );
-};
+const Footer = (): ReactElement => <footer></footer>;
 
 const App = (): ReactElement => {
   const basename = '';
