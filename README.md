@@ -147,4 +147,5 @@ When a pull request is merged into the `main` branch, the following is automatic
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ---
+
 Based on template version 3.2.0
