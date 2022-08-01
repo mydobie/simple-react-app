@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { axe } from 'jest-axe';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router'; // see https://medium.com/@antonybudianto/react-router-testing-with-jest-and-enzyme-17294fefd303
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
@@ -42,7 +42,17 @@ describe('App (router) tests', () => {
 
 describe('App renders correctly', () => {
   test('App is accessible', async () => {
-    const { container } = render(<App />);
+    let container;
+    await act(async () => {
+      container = render(<App />).container;
+    });
+
+    await waitFor(async () =>
+      expect(screen.getByTestId('header')).toBeInTheDocument()
+    );
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
