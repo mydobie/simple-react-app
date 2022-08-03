@@ -1,11 +1,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import SetAxios from '../../components/SetAxios';
 
-//let mock: MockAdapter;
 const mock = new MockAdapter(axios);
 
 const SampleComponent = ({
@@ -61,10 +60,9 @@ describe('SetAxios tests', () => {
         testResponse={testResponse}
       />
     );
-    await waitFor(() => screen.queryByTestId('done'));
+    await waitFor(() => expect(setError).toHaveBeenCalledTimes(1));
 
     expect(clearError).toHaveBeenCalledTimes(1);
-    expect(setError).toHaveBeenCalledTimes(1);
     expect(testResponse).toHaveBeenCalledTimes(0);
   });
 
@@ -80,10 +78,9 @@ describe('SetAxios tests', () => {
         testResponse={testResponse}
       />
     );
-    await waitFor(() => screen.queryByTestId('done'));
+    await waitFor(() => expect(testResponse).toHaveBeenCalledTimes(1));
 
     expect(clearError).toHaveBeenCalledTimes(1);
     expect(setError).toHaveBeenCalledTimes(0);
-    expect(testResponse).toHaveBeenCalledTimes(1);
   });
 });
