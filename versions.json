@@ -1,1 +1,1 @@
-{"bootstrap":"5.1.3","hello":"world","featureFlags":"mydobie/featureFlags#npmbuild3.1.0"}
+{"bootstrap":"^5.2.0","hello":"world","featureFlags":"mydobie/featureFlags#npmbuild3.1.0"}
