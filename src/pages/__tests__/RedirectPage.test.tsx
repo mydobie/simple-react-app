@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/react-in-jsx-scope */
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import RedirectPage from '../../pages/RedirectPage';
 import ROUTES from '../../AppRouteNames';
@@ -16,16 +16,17 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Redirect Page tests', () => {
-  test('User is forwarded to homepage after button click', () => {
+  test('User is forwarded to homepage after button click', async () => {
     render(
       <MemoryRouter>
         <RedirectPage />
       </MemoryRouter>
     );
-    act(() => {
-      fireEvent.click(screen.getByTestId('goToHomeButton'));
-      expect(mockedUsedNavigate).toHaveBeenCalledWith(ROUTES.HOME);
-    });
+
+    fireEvent.click(screen.getByTestId('goToHomeButton'));
+    await waitFor(() =>
+      expect(mockedUsedNavigate).toHaveBeenCalledWith(ROUTES.HOME)
+    );
   });
 
   test('User is forwarded to homepage after 5 seconds', () => {

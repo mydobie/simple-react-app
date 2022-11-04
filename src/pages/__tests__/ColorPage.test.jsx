@@ -6,13 +6,10 @@ import { MemoryRouter as Router } from 'react-router';
 import ReactRouter from 'react-router-dom';
 import ColorPage from '../../pages/ColorPage';
 
-const isValidMessage = (container) =>
-  container.querySelector("[data-testid='validMessage'][data-valid='true']");
-
-const isInvalidMessage = (container) =>
-  container.querySelector(
-    "[data-testid='invalidMessage'][data-invalid='true']"
-  );
+const isValidMessageSelector =
+  "[data-testid='validMessage'][data-valid='true']";
+const isInvalidMessageSelector =
+  "[data-testid='invalidMessage'][data-invalid='true']";
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -28,8 +25,14 @@ describe('Sample Color Page component tests', () => {
       </Router>
     );
 
-    expect(isValidMessage(container)).not.toBeInTheDocument();
-    expect(isInvalidMessage(container)).not.toBeInTheDocument();
+    expect(
+      container.querySelector(isValidMessageSelector)
+    ).not.toBeInTheDocument();
+
+    expect(
+      container.querySelector(isInvalidMessageSelector)
+    ).not.toBeInTheDocument();
+
     expect(screen.getByTestId('homeButton')).toBeDisabled();
 
     const results = await axe(container);
@@ -48,8 +51,14 @@ describe('Sample Color Page component tests', () => {
       target: { value: 'notAColor' },
     });
 
-    expect(isValidMessage(container)).not.toBeInTheDocument();
-    expect(isInvalidMessage(container)).toBeInTheDocument();
+    expect(
+      container.querySelector(isValidMessageSelector)
+    ).not.toBeInTheDocument();
+
+    expect(
+      container.querySelector(isInvalidMessageSelector)
+    ).toBeInTheDocument();
+
     expect(screen.getByTestId('homeButton')).toBeDisabled();
 
     const results = await axe(container);
@@ -68,8 +77,11 @@ describe('Sample Color Page component tests', () => {
       target: { value: 'Red' },
     });
 
-    expect(isValidMessage(container)).toBeInTheDocument();
-    expect(isInvalidMessage(container)).not.toBeInTheDocument();
+    expect(container.querySelector(isValidMessageSelector)).toBeInTheDocument();
+    expect(
+      container.querySelector(isInvalidMessageSelector)
+    ).not.toBeInTheDocument();
+
     expect(screen.getByTestId('homeButton')).toBeEnabled();
 
     const results = await axe(container);
@@ -84,8 +96,14 @@ describe('Sample Color Page component tests', () => {
     const { container } = render(<ColorPage />);
 
     expect(screen.getByTestId('colorTextInput')).toHaveValue('notAColor');
-    expect(isValidMessage(container)).not.toBeInTheDocument();
-    expect(isInvalidMessage(container)).toBeInTheDocument();
+
+    expect(
+      container.querySelector(isValidMessageSelector)
+    ).not.toBeInTheDocument();
+    expect(
+      container.querySelector(isInvalidMessageSelector)
+    ).toBeInTheDocument();
+
     expect(screen.getByTestId('homeButton')).toBeDisabled();
   });
 
@@ -98,8 +116,11 @@ describe('Sample Color Page component tests', () => {
     );
 
     expect(screen.getByTestId('colorTextInput')).toHaveValue('RED');
-    expect(isValidMessage(container)).toBeInTheDocument();
-    expect(isInvalidMessage(container)).not.toBeInTheDocument();
+    expect(container.querySelector(isValidMessageSelector)).toBeInTheDocument();
+    expect(
+      container.querySelector(isInvalidMessageSelector)
+    ).not.toBeInTheDocument();
+
     expect(screen.getByTestId('homeButton')).toBeEnabled();
   });
   // EXAMPLE: A todo/pending test

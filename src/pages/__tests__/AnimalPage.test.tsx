@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable react/react-in-jsx-scope */
 
 import { axe } from 'jest-axe';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 
 import ROUTES from '../../AppRouteNames';
@@ -17,6 +16,9 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('Animal page tests', () => {
+  beforeEach(() => {
+    mockedUsedNavigate.mockClear();
+  });
   test('Correct content is shown for /animal route', async () => {
     const { container } = render(
       <MemoryRouter initialEntries={[`/${ROUTES.ANIMAL}`]}>
@@ -30,20 +32,18 @@ describe('Animal page tests', () => {
     expect(screen.queryByTestId('displayAnimalType')).not.toBeInTheDocument();
   });
 
-  test('Route /animal/animaltype route is called after selecting a type', () => {
+  test('Route /animal/animaltype route is called after selecting a type', async () => {
     render(
       <MemoryRouter initialEntries={[`/${ROUTES.ANIMAL}`]}>
         <AppRoutes />
       </MemoryRouter>
     );
 
-    act(() => {
-      fireEvent.change(screen.getByRole('combobox'), {
-        target: { value: 'Dog' },
-      });
-
-      expect(mockedUsedNavigate).toHaveBeenCalledWith('Dog');
+    fireEvent.change(screen.getByRole('combobox'), {
+      target: { value: 'Dog' },
     });
+
+    await waitFor(() => expect(mockedUsedNavigate).toHaveBeenCalledWith('Dog'));
   });
 
   test('Correct content is shown for /animal/animaltype route', async () => {
@@ -61,44 +61,40 @@ describe('Animal page tests', () => {
     expect(screen.getByText('Type: Dog')).toBeInTheDocument();
   });
 
-  test('Route /animal/dog/animalname route is called after typing a name', () => {
+  test('Route /animal/dog/animalname route is called after typing a name', async () => {
     render(
       <MemoryRouter initialEntries={[`/${ROUTES.ANIMAL}/Dog`]}>
         <AppRoutes />
       </MemoryRouter>
     );
 
-    act(() => {
-      fireEvent.change(screen.getByRole('textbox'), {
-        target: { value: 'Fido' },
-      });
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: 'Fido' },
     });
-    act(() => {
-      fireEvent.click(screen.getByRole('button'));
 
+    fireEvent.click(screen.getByRole('button'));
+
+    await waitFor(() =>
       expect(mockedUsedNavigate).toHaveBeenCalledWith(
         `Dog/${ROUTES.ANIMAL_PARAMS.ANIMAL_NAME}/Fido`
-      );
-    });
+      )
+    );
   });
 
-  test('Route is not changed after typing an empty name', () => {
+  test('Route is not changed after typing an empty name', async () => {
     render(
       <MemoryRouter initialEntries={[`/${ROUTES.ANIMAL}/Dog`]}>
         <AppRoutes />
       </MemoryRouter>
     );
 
-    act(() => {
-      fireEvent.change(screen.getByRole('textbox'), {
-        target: { value: '' },
-      });
+    fireEvent.change(screen.getByRole('textbox'), {
+      target: { value: '' },
     });
-    act(() => {
-      fireEvent.click(screen.getByRole('button'));
 
-      expect(mockedUsedNavigate).toHaveBeenCalledTimes(0);
-    });
+    fireEvent.click(screen.getByRole('button'));
+
+    await waitFor(() => expect(mockedUsedNavigate).toHaveBeenCalledTimes(0));
   });
 
   test('Correct content is shown for /animal/dog/animalname route', async () => {
