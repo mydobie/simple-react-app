@@ -18,7 +18,7 @@ const SamplePage = ({}: SamplePageProps): ReactElement => {
     };
   }, []);
 
-  return <></>;
+  return <>Sample Page Content</>;
 };
 
 export default SamplePage;

@@ -45,16 +45,15 @@ const SetAxios = ({
       if (error.response?.status) {
         switch (error.response?.status) {
           case 401:
-            break;
+          // break;
           case 403:
-            break;
+          // break;
           case 404:
-            break;
+          // break;
           case 500:
-            break;
+          // break;
           default:
             setError(SetAxios.UNKNOWN_ERROR);
-            break;
         }
       } else {
         setError(SetAxios.UNKNOWN_ERROR);

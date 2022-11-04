@@ -1,7 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { axe } from 'jest-axe';
-import { render, screen, act, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router'; // see https://medium.com/@antonybudianto/react-router-testing-with-jest-and-enzyme-17294fefd303
+import { render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import AppRoutes from '../AppRoutes';
@@ -26,7 +26,6 @@ describe('App (router) tests', () => {
     );
     const results = await axe(container);
     expect(results).toHaveNoViolations();
-    expect(screen.getByTestId('homePageContainer')).toBeInTheDocument();
   });
 
   test('404 is shown for /cannnotFindPage', () => {
@@ -41,18 +40,11 @@ describe('App (router) tests', () => {
 });
 
 describe('App renders correctly', () => {
-  test.skip('App is accessible', async () => {
-    let container;
-    await act(async () => {
-      container = render(<App />).container;
-    });
+  test('App is accessible', async () => {
+    const { container } = render(<App />);
 
-    await waitFor(async () =>
-      expect(screen.getByTestId('header')).toBeInTheDocument()
-    );
+    await waitFor(() => expect(screen.getByRole('banner')).toBeInTheDocument());
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
