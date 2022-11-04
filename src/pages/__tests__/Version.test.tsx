@@ -5,7 +5,7 @@ import fs from 'fs';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
-import Version from '../../pages/Version';
+import Version from '../Version';
 
 let mock: MockAdapter;
 

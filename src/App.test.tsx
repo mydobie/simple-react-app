@@ -4,8 +4,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import AppRoutes from '../AppRoutes';
-import App from '../App';
+import AppRoutes from './AppRoutes';
+import App from './App';
 
 let mock: MockAdapter;
 
