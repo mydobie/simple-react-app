@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 
 import ROUTES from './AppRouteNames';
-import { isProd } from './js/whichEnv';
 
 const NavItem: React.FC<{ to: string; end?: boolean }> = ({
   to,
@@ -36,9 +35,9 @@ const AppNavBar = (): ReactElement => (
       <NavItem to={ROUTES.FLOWERS}> Flowers (Tabs)</NavItem>
       <NavItem to={ROUTES.ANIMAL}> Animal (Nested routes)</NavItem>
 
-      {!isProd() ? (
+      {/* {!isProd() ? (
         <NavItem to={ROUTES.FEATURE_FLAGS}>Feature flags</NavItem>
-      ) : null}
+      ) : null} */}
       <NavItem to={ROUTES.VERSION}>Version</NavItem>
     </Nav>
   </nav>
