@@ -62,11 +62,9 @@ A test driven development (TDD) should be used when building react components. T
 
 Private methods or components that are only consumed by other components do not need test directly testing those items. Only testing exported components or methods are necessary.
 
-Tests are written using Jest and React Testing Library and should be saved in the `/src/__tests__` directory.
+Tests are written using Jest and React Testing Library and should be saved in the same directory as the file.
 
 If at all possible snapshot tests (where results are compared to a previous run's html) should be avoided.
-
-Text matching tests should be avoided, the use of [testIds](https://testing-library.com/docs/queries/bytestid/) is preferred.
 
 Because of the nature of the Node, Jest, React, and Redux (if used) environment, a very high level of test coverage (at least 85% lines covered) is expected.
 
@@ -173,7 +171,7 @@ YES:
 
 ### SCSS
 
-CSS for individual items should be saved inside the component itself. This can be done as inline CSS or use styled-components (recommended). If there is a lot of custom css needed for a component, then a separate scss file can be crated and imported.
+CSS for individual items should be saved inside the component itself using styled-components.
 
 Only application-wide styles should be added to the `src/scss` files
 

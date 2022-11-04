@@ -32,6 +32,6 @@ describe('Component tests', () => {
 
   test('Is rendered', async () => {
     render(<SAMPLE_COMPONENT />);
-    expect(screen.getByTestId('componentContent')).toBeInTheDocument();
+    expect(screen.getByText('Sample Component Content')).toBeInTheDocument();
   });
 });

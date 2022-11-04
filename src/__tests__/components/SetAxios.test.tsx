@@ -66,7 +66,7 @@ describe('SetAxios tests', () => {
     expect(testResponse).toHaveBeenCalledTimes(0);
   });
 
-  test('Goood ajax call', async () => {
+  test('Good ajax call', async () => {
     const clearError = jest.fn();
     const setError = jest.fn();
     const testResponse = jest.fn();

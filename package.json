@@ -82,7 +82,7 @@
     "format:fix": "prettier --ignore-path ./.eslintignore --write 'src/**/*.{js,jsx,ts,tsx,css,scss,md,json,html}' ",
     "lint:css": "npm run lint:css:css && npm run lint:css:js",
     "lint:css:fix": "npm run lint:css:css -- --fix && npm run lint:css:js -- --fix",
-    "lint:css:css":"stylelint --ignore-path ./.eslintignore './**/*.+(css|scss)'",
+    "lint:css:css": "stylelint --ignore-path ./.eslintignore './**/*.+(css|scss)'",
     "lint:css:js": "stylelint --ignore-path ./.eslintignore --config .stylelintrcJS './**/*.+(ts|tsx|js|jsx)'",
     "// ----------------------------------------------------------4": "",
     "uglify": "uglifyjs ",
@@ -92,7 +92,6 @@
     "// ----------------------------------------------------------5": "",
     "prepare": "husky install"
   },
-  
   "browserslist": {
     "production": [
       ">0.2%",
@@ -103,6 +102,21 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/index.tsx",
+      "!src/__test_fixtures__/**/*.*"
+    ],
+    "coverageReporters": [
+      "html",
+      "json-summary",
+      "text-summary"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios)"
     ]
   }
 }

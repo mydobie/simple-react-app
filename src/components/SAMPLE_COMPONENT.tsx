@@ -18,7 +18,7 @@ const SampleComponent = ({}: SampleComponentProps): ReactElement => {
     };
   }, []);
 
-  return <></>;
+  return <>Sample Component Content</>;
 };
 
 export default SampleComponent;
