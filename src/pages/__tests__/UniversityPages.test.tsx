@@ -12,7 +12,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { universitiesAPI } from '../../js/axios.config';
 
-import mockUniversities from '../../__test_fixtures__/universities.json';
+import mockUniversities from './fixtures/universities.json';
 import UniversitiesPage from '../../pages/UniversityPages';
 
 let mock: MockAdapter;

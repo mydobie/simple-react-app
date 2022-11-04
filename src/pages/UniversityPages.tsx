@@ -1,5 +1,5 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import { Row, Col, Card, Image, Button } from 'react-bootstrap';
+import { Row, Col, Card, Image, Button, Alert } from 'react-bootstrap';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-dark.css';
@@ -7,9 +7,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Clipboard, Clipboard2Check } from 'react-bootstrap-icons';
 import styled from 'styled-components';
 import { universitiesAPI, ajaxFinally } from '../js/axios.config';
-import Alert from '../components/Alert';
-import Loading from '../components/Loading';
 import mortarboardImg from '../images/mortarboard.svg';
+import Loading from '../components/Loading';
 
 // ** Main component type */
 type UniversityType = {
@@ -127,7 +126,7 @@ const UniversityPage = (): ReactElement => {
         <Col>
           {/* EXAMPLE: Using conditional display logic (aka show if) */}
           {loading ? <Loading /> : null}
-          {error ? <Alert>{error}</Alert> : null}
+          {error ? <Alert variant='danger'>{error}</Alert> : null}
 
           {!loading ? (
             <ul>

@@ -2,6 +2,8 @@
 
 import React, { ReactElement } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { FeatureFlagsUI } from 'feature-flags/react';
+import { isProd } from './js/whichEnv';
 
 import ROUTES from './AppRouteNames';
 
@@ -16,7 +18,12 @@ import Daisies from './components/Flowers/Daisies';
 import AnimalPage from './pages/AnimalPage';
 import FourOhFour from './pages/FourOhFour';
 
-const AppRoutes = (): ReactElement => (
+interface Props {
+  onFeatureChange?: (flagId?: string, isActive?: boolean) => void;
+}
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
   <>
     <Routes>
       <Route path={ROUTES.HOME} element={<Home />} />
@@ -59,7 +66,7 @@ const AppRoutes = (): ReactElement => (
       <Route path={ROUTES.VERSION} element={<Version />} />
       {/* EXAMPLE: Use which env methods to determine what is displayed */}
       {/* // START FEATURE FLAGS */}
-      {/* {!isProd() ? (
+      {!isProd() ? (
         <Route
           path={ROUTES.FEATURE_FLAGS}
           element={
@@ -71,7 +78,7 @@ const AppRoutes = (): ReactElement => (
             />
           }
         />
-      ) : null} */}
+      ) : null}
       {/* // END FEATURE FLAGS */}
       FeatureFlagsUI
       {/* EXAMPLE: Route to 404 page
