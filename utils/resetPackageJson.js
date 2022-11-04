@@ -12,12 +12,6 @@ const newPackageJSON = {
   scripts: {},
   devDependencies: {},
   dependencies: {},
-  prettier: {},
-  babel: {},
-  eslintConfig: {},
-  stylelint: {},
-  husky: {},
-  jest: {},
   browserslist: {},
   files: ['**/*'],
 };

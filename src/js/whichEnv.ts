@@ -1,3 +1,5 @@
+// File to check the environment the application is running on based on host url
+
 // *********************** GET ENVIRONMENT BASED ON URL ************************* //
 // Add non-prod environments here:
 

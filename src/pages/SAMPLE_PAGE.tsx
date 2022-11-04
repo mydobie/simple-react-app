@@ -1,23 +1,14 @@
 import React, { ReactElement } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import {} from 'react-bootstrap';
 
-// *** Import selectors ***
-
-// *** Import reducers ***
-
-// *** Import components ***
+// eslint-disable-next-line @typescript-eslint/ban-types
+type SamplePageProps = {};
 
 // *** Main component ***
-const SamplePage = (): ReactElement => {
-  // const dispatch = useDispatch();
+// eslint-disable-next-line no-empty-pattern
+const SamplePage = ({}: SamplePageProps): ReactElement => {
+  //
 
-  // *** Selectors ***
-  // const items: SampleItemType[] = useGetItems();
-
-  // *** State (useState) ***
-  //  const [myMessage, setMyMessage] = React.useState('');
-
-  // *** On component load ***
   // eslint-disable-next-line arrow-body-style
   React.useEffect(() => {
     // *** items run on component mount ***
@@ -27,20 +18,7 @@ const SamplePage = (): ReactElement => {
     };
   }, []);
 
-  return (
-    <div data-testid='pageContent'>
-      <Row>
-        <Col>
-          {/* Page title */}
-          <h1>Sample Page</h1>
-
-          {/* Page content */}
-
-          {/* End page content */}
-        </Col>
-      </Row>
-    </div>
-  );
+  return <></>;
 };
 
 export default SamplePage;

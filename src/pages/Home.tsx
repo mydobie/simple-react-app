@@ -6,7 +6,7 @@ import { Row, Col, Card } from 'react-bootstrap';
 
 // *** Main component ***
 const Home = (): ReactElement => (
-  <Row data-testid='homePageContainer'>
+  <Row>
     <Col>
       <Card bg='secondary' text='white'>
         <Card.Body>
