@@ -1,4 +1,3 @@
-// AJAX CONFIGS.  Add a separate export for each ajax call
 import { Method } from 'axios';
 
 /* ************ API CALLS ************* */
@@ -14,7 +13,7 @@ export const universitiesAPI = {
   method: (): Method => 'get',
   url: (): string =>
     process.env.REACT_APP_USE_MOCKS === 'true'
-      ? `/__fixtures__/universities.json` // NOTE: `__fixtures__` is the  `/public/__fixtures__` directory.
+      ? `/__fixtures__/universities.json`
       : `http://universities.hipolabs.com/search?name=minnesota&country=united+states`,
 };
 
@@ -23,6 +22,9 @@ export const universitiesAPI = {
 
 const sleep = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time));
+
+/* ***************** AJAX Finally Helper ***************/
+// When set in "mock mode" the application will pause simulating a real ajax call
 
 export const ajaxFinally = async (
   func: () => void,

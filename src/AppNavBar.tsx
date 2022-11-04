@@ -7,83 +7,39 @@ import { Nav } from 'react-bootstrap';
 import ROUTES from './AppRouteNames';
 import { isProd } from './js/whichEnv';
 
-const activeClass = (isActive: boolean) =>
-  `nav-link ${isActive ? 'active' : ''}`;
+const NavItem: React.FC<{ to: string; end?: boolean }> = ({
+  to,
+  end,
+  children,
+}) => (
+  <Nav.Item>
+    <NavLink
+      className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+      to={to}
+      end={end}
+    >
+      {children}
+    </NavLink>
+  </Nav.Item>
+);
 
 // EXAMPLE: Navigation bar
 const AppNavBar = (): ReactElement => (
   <nav>
     <Nav>
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.HOME}
-        >
-          Home
-        </NavLink>
-      </Nav.Item>
-
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.COLOR}
-        >
-          Color Page (Simple form)
-        </NavLink>
-      </Nav.Item>
-
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.UNIVERSITIES}
-        >
-          MN Universities
-        </NavLink>
-      </Nav.Item>
-
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.REDIRECT}
-        >
-          Redirect
-        </NavLink>
-      </Nav.Item>
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.FLOWERS}
-        >
-          Flowers (Tabs)
-        </NavLink>
-      </Nav.Item>
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.ANIMAL}
-        >
-          Animal (Nested routes)
-        </NavLink>
-      </Nav.Item>
+      <NavItem to={ROUTES.HOME} end>
+        Home
+      </NavItem>
+      <NavItem to={ROUTES.COLOR}>Color Page (Simple form)</NavItem>
+      <NavItem to={ROUTES.UNIVERSITIES}>MN Universities</NavItem>
+      <NavItem to={ROUTES.REDIRECT}>Redirect</NavItem>
+      <NavItem to={ROUTES.FLOWERS}> Flowers (Tabs)</NavItem>
+      <NavItem to={ROUTES.ANIMAL}> Animal (Nested routes)</NavItem>
 
       {!isProd() ? (
-        <Nav.Item>
-          <NavLink
-            className={({ isActive }) => activeClass(isActive)}
-            to={ROUTES.FEATURE_FLAGS}
-          >
-            Feature flags
-          </NavLink>
-        </Nav.Item>
+        <NavItem to={ROUTES.FEATURE_FLAGS}>Feature flags</NavItem>
       ) : null}
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.VERSION}
-        >
-          Version
-        </NavLink>
-      </Nav.Item>
+      <NavItem to={ROUTES.VERSION}>Version</NavItem>
     </Nav>
   </nav>
 );
