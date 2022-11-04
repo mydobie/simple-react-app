@@ -1,12 +1,12 @@
 module.exports = {
   'src/**/*.{ts,tsx,js,jsx}': [
-    (jsFiles) => jsFiles.map((jsFile) => `npm run lint:js ${jsFile}`), // check files
-    (jsFiles) => jsFiles.map((jsFile) => `npm run lint:scssinjs ${jsFile}`),
+    (jsFiles) => jsFiles.map((jsFile) => `npx eslint ${jsFile}`), // check files
+    (jsFiles) => jsFiles.map((jsFile) => `npx stylelint --ignore-path ./.eslintignore --config .stylelintrcJS --fix ${jsFile}`),
   ],
   'src/**/*.{scss,css}': [
-    (scssFiles) => scssFiles.map((scssFile) => `npm run lint:scss ${scssFile}`), // check files
+    (scssFiles) => scssFiles.map((scssFile) => `npx stylelint --ignore-path ./.eslintignore --fix ${scssFile}`), // check files
   ],
-  'src/**/*.{html,json,md}': [
-    (htmlFiles) => htmlFiles.map((htmlFile) => `npm run prettier ${htmlFile}`), // check files
+  'src/**/*.{js,jsx,ts,tsx,css,scss,md,json,html}': [
+    (htmlFiles) => htmlFiles.map((htmlFile) => `npx prettier --ignore-path ./.eslintignore --write  ${htmlFile}`), // check files
   ],
 };
