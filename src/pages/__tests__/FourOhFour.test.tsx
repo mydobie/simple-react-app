@@ -2,7 +2,7 @@
 
 import { axe } from 'jest-axe';
 import { render } from '@testing-library/react';
-import FourOhFour from '../../pages/FourOhFour';
+import FourOhFour from '../FourOhFour';
 
 describe('404 tests', () => {
   test('Is accessible', async () => {

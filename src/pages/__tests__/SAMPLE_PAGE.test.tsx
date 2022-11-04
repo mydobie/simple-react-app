@@ -1,5 +1,4 @@
 /* eslint-disable  react/react-in-jsx-scope */
-
 import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 
@@ -7,7 +6,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 // import { sampleAPI } from '../../js/axios.config';
-import SAMPLE_COMPONENT from '../../components/SAMPLE_COMPONENT';
+import SAMPLE_PAGE from '../SAMPLE_PAGE';
 
 let mock: MockAdapter;
 
@@ -15,9 +14,9 @@ describe('Component tests', () => {
   beforeEach(() => {
     process.env.REACT_APP_USE_MOCKS = 'false';
     mock = new MockAdapter(axios);
-    //   mock
-    //     .onGet(sampleAPI.url())
-    //     .reply(200, 'Data to be returned from ajax call');
+    // mock
+    //   .onGet(sampleAPI.url())
+    //   .reply(200, 'Data to be returned from ajax call');
   });
 
   afterEach(() => {
@@ -25,13 +24,13 @@ describe('Component tests', () => {
   });
 
   test('Is accessible', async () => {
-    const { container } = render(<SAMPLE_COMPONENT />);
+    const { container } = render(<SAMPLE_PAGE />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
 
   test('Is rendered', async () => {
-    render(<SAMPLE_COMPONENT />);
-    expect(screen.getByText('Sample Component Content')).toBeInTheDocument();
+    render(<SAMPLE_PAGE />);
+    expect(screen.getByText('Sample Page Content')).toBeInTheDocument();
   });
 });

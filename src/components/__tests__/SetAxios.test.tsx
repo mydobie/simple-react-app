@@ -3,7 +3,7 @@ import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import SetAxios from '../../components/SetAxios';
+import SetAxios from '../SetAxios';
 
 const mock = new MockAdapter(axios);
 
