@@ -17,3 +17,9 @@ fs.writeFileSync(
   path.join(__dirname, '../public/versions.json'),
   JSON.stringify(versions)
 );
+
+// eslint-disable-next-line no-console
+console.log(
+  'Versions page created in: ',
+  path.join(__dirname, '../public/versions.json')
+);
