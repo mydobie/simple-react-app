@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 // NOTE This file allows you to write code that will be run before and after every ajax call
 
 /* eslint-disable no-fallthrough */

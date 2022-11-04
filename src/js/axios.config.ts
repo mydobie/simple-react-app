@@ -25,7 +25,7 @@ const sleep = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time));
 
 export const ajaxFinally = async (
-  func: () => void = () => {},
+  func: () => void,
   timeout = 3000,
   envVariable = 'REACT_APP_USE_MOCKS'
 ): Promise<void> => {
