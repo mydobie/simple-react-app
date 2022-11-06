@@ -12,12 +12,13 @@ describe('Color page', () => {
     cy.contains('Please enter a primary or secondary color').as('errorMessage');
     cy.contains('Looks good!').as('successMessage');
 
-    cy.get('@colorInput').clear();
-    cy.get('@colorInput').should('have.value', '');
-    cy.get('@homeButton').should('be.disabled');
+    // cy.get('@colorInput').clear();
+    // cy.get('@colorInput').should('have.value', '');
+    //cy.get('@homeButton').should('be.disabled');
   });
 
   it('Empty value', () => {
+    cy.get('@colorInput').clear();
     cy.get('@homeButton').should('be.disabled');
     cy.get('@colorInput').should('not.have.attr', 'aria-invalid');
     cy.get('@errorMessage').should('not.be.visible');
@@ -39,6 +40,7 @@ describe('Color page', () => {
   });
 
   it('Enter a bad color and empty value', () => {
+    cy.get('@colorInput').clear();
     cy.get('@colorInput').type('maroon');
     cy.get('@colorInput').should('have.value', 'maroon');
     cy.get('@colorInput').clear();
@@ -72,6 +74,7 @@ describe('Color page', () => {
   });
 
   it('Enter a good color', () => {
+    cy.get('#myColor').clear();
     cy.get('#myColor').type('red');
     cy.get('#myColor').should('have.value', 'red');
     cy.get('#myColor').clear();
@@ -83,9 +86,6 @@ describe('Color page', () => {
   });
 
   it('Entering color in URL is set in the input box', () => {
-    // returning false here prevents Cypress from
-    // failing the test
-    // Cypress.on('uncaught:exception', (/* err, runnable */) => false);
     cy.visit('/color/red');
     cy.get('#myColor').should('have.value', 'red');
     cy.get('#myColor').clear();

@@ -11,7 +11,12 @@
     "plugin:react-hooks/recommended",
     "prettier"
   ],
-  "overrides": [],
+  "overrides": [
+    {
+      "extends": ["plugin:cypress/recommended"],
+      "files": ["cypress/**/*.js"]
+    }
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
