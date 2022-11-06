@@ -20,6 +20,11 @@ const queryClient = new QueryClient({
     warn: console.warn,
     error: () => {}, // Prevents networking error from logging to console.
   },
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
 });
 
 describe('Sample Universities Page component tests', () => {

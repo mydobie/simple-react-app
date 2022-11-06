@@ -1,13 +1,28 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+/* eslint-disable no-console */
 /* eslint-disable react/react-in-jsx-scope */
 import { axe } from 'jest-axe';
 import { render, screen, waitFor } from '@testing-library/react';
 import fs from 'fs';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import Version from '../Version';
 
 let mock: MockAdapter;
+const queryClient = new QueryClient({
+  logger: {
+    log: console.log,
+    warn: console.warn,
+    error: () => {}, // Prevents networking error from logging to console.
+  },
+  defaultOptions: {
+    queries: {
+      retry: false,
+    },
+  },
+});
 
 describe('Version tests', () => {
   const packageData = fs.readFileSync('package.json');
@@ -22,9 +37,12 @@ describe('Version tests', () => {
     });
   });
   test('Is accessible', async () => {
-    const { container } = render(<Version />);
+    const { container } = render(
+      <QueryClientProvider client={queryClient}>
+        <Version />
+      </QueryClientProvider>
+    );
     await waitFor(() => expect(screen.getByText('5.1.3')).toBeInTheDocument());
-
     const results = await axe(container);
     expect(results).toHaveNoViolations();
   });
@@ -32,7 +50,11 @@ describe('Version tests', () => {
   test('Displays version and app name from package.json', async () => {
     const { version, name } = packageJson;
 
-    render(<Version />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <Version />
+      </QueryClientProvider>
+    );
 
     await waitFor(() => expect(screen.getByText('5.1.3')).toBeInTheDocument());
     expect(screen.getByText(name)).toBeInTheDocument();

@@ -87,7 +87,6 @@ const UniversityPage = (): ReactElement => {
       }),
     cacheTime: 60 * 1000,
     staleTime: 30 * 1000,
-    retry: false,
   });
 
   React.useEffect(() => {
