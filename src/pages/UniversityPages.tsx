@@ -1,6 +1,9 @@
+/* eslint-disable no-console */
 import React, { ReactElement, useState, useEffect } from 'react';
 import { Row, Col, Card, Image, Button, Alert } from 'react-bootstrap';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { useQuery } from '@tanstack/react-query';
+
+import axios, { AxiosRequestConfig } from 'axios';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-dark.css';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -64,54 +67,38 @@ const RawJSON = ({ json }: { json: object }): ReactElement => {
   );
 };
 
+const axiosConfig: AxiosRequestConfig = {
+  url: universitiesAPI.url(), // EXAMPLE: Use of Ajax url and method helper
+  method: universitiesAPI.method(),
+};
+
 // *** Main component ***
 const UniversityPage = (): ReactElement => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null); // string or null
-  const [univList, setUnivList] = useState([]);
-  const [raw, setRaw] = useState<object | null>(null);
+  const [univList, setUnivList] = useState<string[]>([]);
 
-  useEffect(() => {
-    const { CancelToken } = axios;
-    const source = CancelToken.source();
-    const loadUniversities = async () => {
-      setLoading(true);
-      setRaw(null);
-      setUnivList([]);
-      try {
-        //  EXAMPLE: Ajax call in non-redux file
-        const axiosConfig: AxiosRequestConfig = {
-          url: universitiesAPI.url(), // EXAMPLE: Use of Ajax url and method helper
-          method: universitiesAPI.method(),
-          cancelToken: source.token,
-        };
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const response: AxiosResponse<any> = await axios(axiosConfig);
-
-        // EXAMPLE: Use of ajaxFinally helper
+  // EXAMPLE: Use of React-query
+  const { isLoading, error, data } = useQuery({
+    queryKey: [],
+    queryFn: () =>
+      axios(axiosConfig).then(async (response) => {
         await ajaxFinally();
-        if (response.data) {
-          const universities = response.data.map(
-            (university: UniversityType) => university.name
-          );
-          setRaw(response.data);
-          setUnivList(universities);
-          setError(null);
-        } else {
-          throw Error('Uncaught Error');
-        }
-      } catch (_error) {
-        setError('There was an error loading university names.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadUniversities();
 
-    return function cleanup() {
-      source.cancel('Operation canceled by the user.');
-    };
-  }, []);
+        return response.data;
+      }),
+    cacheTime: 60 * 1000,
+    staleTime: 30 * 1000,
+    retry: false,
+  });
+
+  React.useEffect(() => {
+    if (data) {
+      const universitiesAll = data.map(
+        (university: UniversityType) => university.name
+      );
+      const universitiesUnique: string[] = Array.from(new Set(universitiesAll));
+      setUnivList(universitiesUnique);
+    }
+  }, [data]);
 
   return (
     <>
@@ -125,10 +112,12 @@ const UniversityPage = (): ReactElement => {
         </Col>
         <Col>
           {/* EXAMPLE: Using conditional display logic (aka show if) */}
-          {loading ? <Loading /> : null}
-          {error ? <Alert variant='danger'>{error}</Alert> : null}
+          {isLoading ? <Loading /> : null}
+          {!isLoading && error ? (
+            <Alert variant='danger'>{(error as Error).message}</Alert>
+          ) : null}
 
-          {!loading ? (
+          {!isLoading ? (
             <ul>
               {/* EXAMPLE: Using map to display items from an array */}
               {univList.map((university) => (
@@ -141,7 +130,8 @@ const UniversityPage = (): ReactElement => {
         </Col>
       </Row>
       <Row>
-        <Col>{raw ? <RawJSON json={raw} /> : null}</Col>
+        {' '}
+        <Col>{data ? <RawJSON json={data} /> : null}</Col>{' '}
       </Row>
     </>
   );

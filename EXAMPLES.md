@@ -28,9 +28,10 @@ To make examples easier to find, all examples are preceded with a comment starti
 
 - React-Bootstrap invalid/valid settings
 
-## Helpers
+## AJAX
 
 - Use of ajaxFinally helper
+- Use of React-query
 - Use of Ajax url and method helper
 - Format JSON response
 

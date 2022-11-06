@@ -73,6 +73,14 @@
   },
   {
     "alpha_two_code": "US",
+    "web_pages": ["http://www.southeastmn.edu"],
+    "name": "Minnesota State College-​Southeast Technical",
+    "country": "United States",
+    "domains": ["southeastmn.edu"],
+    "state-province": null
+  },
+  {
+    "alpha_two_code": "US",
     "web_pages": ["http://www.minnesota.edu"],
     "name": "Minnesota State Community and Technical College",
     "country": "United States",

@@ -9,6 +9,7 @@
     "node": "16 || 18"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.14.3",
     "axios": "^1.1.3",
     "bootstrap": "^5.2.2",
     "feature-flags": "mydobie/featureFlags#npmbuild3.1.0",
@@ -89,7 +90,7 @@
     "uglify": "uglifyjs ",
     "checkCoverage": "node ./utils/testCoverage.js",
     "createTar": "node ./utils/createArchive.js",
-    "npmAudit": "npm audit -audit-level high --production",
+    "npmAudit": "npm audit -audit-level high --omit=dev",
     "// ----------------------------------------------------------5": "",
     "prepare": "husky install"
   },

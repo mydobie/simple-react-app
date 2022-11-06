@@ -3,6 +3,13 @@
 import React, { ReactElement, useReducer } from 'react';
 import { BrowserRouter, HashRouter } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
 import { Container, Card } from 'react-bootstrap';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { retry: false },
+  },
+});
 
 const Router =
   process.env.REACT_APP_USE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter;
@@ -62,15 +69,17 @@ const App = (): ReactElement => {
   return (
     <>
       <Router basename={basename}>
-        <SetAxios />
-        <Header />
-        <AppNavBar />
-        <Container>
-          <main>
-            <AppRoutes onFeatureChange={forceUpdate} />
-          </main>
-        </Container>
-        <Footer />
+        <QueryClientProvider client={queryClient}>
+          <SetAxios />
+          <Header />
+          <AppNavBar />
+          <Container>
+            <main>
+              <AppRoutes onFeatureChange={forceUpdate} />
+            </main>
+          </Container>
+          <Footer />
+        </QueryClientProvider>
       </Router>
     </>
   );
