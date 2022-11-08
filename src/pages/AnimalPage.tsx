@@ -3,6 +3,7 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import ROUTES from '../AppRouteNames';
 import { useParams } from 'react-router-dom';
+import { UserContext } from '../App';
 
 const ChooseType = ({ onChange }: { onChange: (val: string) => void }) => (
   <Form.Group controlId='animalType'>
@@ -64,23 +65,33 @@ const AnimalPage = (): ReactElement => {
   };
 
   return (
-    <Row>
-      <Col>
-        <h1>Animals</h1>
-        {!animalType ? <ChooseType onChange={onAnimalChange} /> : null}
-        <ul>
-          {animalType ? (
-            <li data-testid='displayAnimalType'>Type: {animalType}</li>
+    <>
+      <Row>
+        <Col>
+          <UserContext.Consumer>
+            {({ user }) => <>Welcome {user}</>}
+          </UserContext.Consumer>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+          <h1>Animals</h1>
+          {!animalType ? <ChooseType onChange={onAnimalChange} /> : null}
+          <ul>
+            {animalType ? (
+              <li data-testid='displayAnimalType'>Type: {animalType}</li>
+            ) : null}
+            {animalType && animalName ? (
+              <li data-testid='displayAnimalName'>Name: {animalName} </li>
+            ) : null}
+          </ul>
+          {animalType && !animalName ? (
+            <ChooseName onChange={onNameChange} />
           ) : null}
-          {animalType && animalName ? (
-            <li data-testid='displayAnimalName'>Name: {animalName} </li>
-          ) : null}
-        </ul>
-        {animalType && !animalName ? (
-          <ChooseName onChange={onNameChange} />
-        ) : null}
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+    </>
   );
 };
 

@@ -52,9 +52,20 @@ const Footer = (): ReactElement => {
     </footer>
   );
 };
+type UserContextType = {
+  user: string;
+  setUser: (userName: string) => void;
+};
+
+export const UserContext = React.createContext<UserContextType>({
+  user: '',
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setUser: () => {},
+});
 
 const App = (): ReactElement => {
   const basename = '';
+  const [user, setUser] = React.useState('superSuer');
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
   React.useEffect(() => {
     // START FEATURE FLAGS
@@ -75,7 +86,9 @@ const App = (): ReactElement => {
           <AppNavBar />
           <Container>
             <main>
-              <AppRoutes onFeatureChange={forceUpdate} />
+              <UserContext.Provider value={{ user, setUser }}>
+                <AppRoutes onFeatureChange={forceUpdate} />
+              </UserContext.Provider>
             </main>
           </Container>
           <Footer />

@@ -5,10 +5,10 @@
 // utils/getVersions.js
 
 import React, { ReactElement } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Form } from 'react-bootstrap';
 import { FeatureFlagsUI } from 'feature-flags/react';
 import { useGetVersion } from '../js/getVersion';
-
+import { UserContext } from '../App';
 const Version = (/* props */): ReactElement => {
   const [version] = useGetVersion();
 
@@ -72,6 +72,23 @@ const Version = (/* props */): ReactElement => {
           <p>The current status of feature flags:</p>
           {/* EXAMPLE: List feature flags (read only) */}
           <FeatureFlagsUI readonly />
+        </Col>
+      </Row>
+      <hr />
+      <Row>
+        <Col>
+          <UserContext.Consumer>
+            {({ user, setUser }) => (
+              <>
+                <Form.Label htmlFor='userName'>User Name</Form.Label>
+                <Form.Control
+                  id='userName'
+                  placeholder={user}
+                  onChange={(e) => setUser(e.target.value)}
+                />
+              </>
+            )}
+          </UserContext.Consumer>
         </Col>
       </Row>
     </>

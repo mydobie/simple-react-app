@@ -17,6 +17,7 @@ import Tulips from './components/Flowers/Tulips';
 import Daisies from './components/Flowers/Daisies';
 import AnimalPage from './pages/AnimalPage';
 import FourOhFour from './pages/FourOhFour';
+import Dates from './pages/Dates';
 
 interface Props {
   onFeatureChange?: (flagId?: string, isActive?: boolean) => void;
@@ -63,6 +64,7 @@ const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
           </Route>
         </Route>
       </Route>
+      <Route path={`${ROUTES.DATES}`} element={<Dates />} />
       <Route path={ROUTES.VERSION} element={<Version />} />
       {/* EXAMPLE: Use which env methods to determine what is displayed */}
       {/* // START FEATURE FLAGS */}
