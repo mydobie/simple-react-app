@@ -13,7 +13,7 @@
     "axios": "^1.1.3",
     "bootstrap": "^5.2.2",
     "date-fns": "^2.29.3",
-    "feature-flags": "mydobie/featureFlags#npmbuild4.0.0",
+    "feature-flags": "mydobie/featureFlags#npmbuild5.0.0",
     "prismjs": "^1.28.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",

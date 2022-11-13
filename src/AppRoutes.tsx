@@ -2,7 +2,7 @@
 
 import React, { ReactElement } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { FeatureFlagsUI } from 'feature-flags/react';
+import { FeatureFlagsUI } from 'feature-flags';
 import { isProd } from './js/whichEnv';
 
 import ROUTES from './AppRouteNames';
@@ -19,12 +19,8 @@ import AnimalPage from './pages/AnimalPage';
 import FourOhFour from './pages/FourOhFour';
 import Dates from './pages/Dates';
 
-interface Props {
-  onFeatureChange?: (flagId?: string, isActive?: boolean) => void;
-}
-
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
+const AppRoutes = (): ReactElement => (
   <>
     <Routes>
       <Route path={ROUTES.HOME} element={<Home />} />
@@ -73,11 +69,7 @@ const AppRoutes = ({ onFeatureChange = () => {} }: Props): ReactElement => (
           path={ROUTES.FEATURE_FLAGS}
           element={
             // EXAMPLE: Feature flag UI
-            <FeatureFlagsUI
-              onFeatureChange={() => {
-                onFeatureChange(); // this is passed to AppRoutes to force an app rerender
-              }}
-            />
+            <FeatureFlagsUI />
           }
         />
       ) : null}

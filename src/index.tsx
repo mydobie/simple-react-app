@@ -7,6 +7,7 @@ NOTE: There normally isn't a reason to change this file
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { FeatureFlagProvider } from 'feature-flags';
 import './scss/index.scss';
 
 const container = document.getElementById('root');
@@ -14,6 +15,8 @@ const root = createRoot(container!);
 
 root.render(
   <React.StrictMode>
-    <App />
+    <FeatureFlagProvider>
+      <App />
+    </FeatureFlagProvider>
   </React.StrictMode>
 );

@@ -90,7 +90,7 @@ const UniversityPage = (): ReactElement => {
   });
 
   React.useEffect(() => {
-    if (data) {
+    if (data && Array.isArray(data)) {
       const universitiesAll = data.map(
         (university: UniversityType) => university.name
       );

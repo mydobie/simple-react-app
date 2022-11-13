@@ -1,4 +1,4 @@
-import { FlagType } from 'feature-flags/react';
+import { FlagType } from 'feature-flags';
 /* ****************** FEATURE FLAG CODES **************** */
 /*
 Add all feature flag ids as constants so it can be used across the application.

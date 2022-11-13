@@ -1,6 +1,6 @@
 // Contains routing and any application wide items like headers, footers and navigation
 
-import React, { ReactElement, useReducer } from 'react';
+import React, { ReactElement } from 'react';
 import { BrowserRouter, HashRouter } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
 import { Container, Card } from 'react-bootstrap';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -14,10 +14,8 @@ const queryClient = new QueryClient({
 const Router =
   process.env.REACT_APP_USE_HASH_ROUTER === 'true' ? HashRouter : BrowserRouter;
 
-// START FEATURE FLAGS
-import { loadFeatureFlags, isFeatureActive } from 'feature-flags/react';
+import { FeatureFlagged, useSetFeatureFlags } from 'feature-flags';
 import { featureFlagArray } from './feature-flags.config';
-// END FEATURE FLAGS
 
 import AppNavBar from './AppNavBar';
 import AppRoutes from './AppRoutes';
@@ -35,23 +33,18 @@ const Header = (): ReactElement => (
   </header>
 );
 
-const Footer = (): ReactElement => {
-  // EXAMPLE: Show/Hide based on feature flag
-  const isColors = isFeatureActive('COLORS');
-  return (
-    <footer>
-      <Card bg='light' style={{ marginTop: '20px' }}>
-        {isColors ? (
-          <>
-            <Card.Body>
-              <strong>Colors:</strong> Red, Orange, Yellow, Green, Blue, Violet
-            </Card.Body>
-          </>
-        ) : null}
-      </Card>
-    </footer>
-  );
-};
+const Footer = (): ReactElement => (
+  <footer>
+    <Card bg='light' style={{ marginTop: '20px' }}>
+      {/* EXAMPLE: Show/Hide based on feature flag */}
+      <FeatureFlagged feature={'COLORS'}>
+        <Card.Body>
+          <strong>Colors:</strong> Red, Orange, Yellow, Green, Blue, Violet
+        </Card.Body>
+      </FeatureFlagged>
+    </Card>
+  </footer>
+);
 type UserContextType = {
   user: string;
   setUser: (userName: string) => void;
@@ -65,16 +58,14 @@ export const UserContext = React.createContext<UserContextType>({
 
 const App = (): ReactElement => {
   const basename = '';
-  const [user, setUser] = React.useState('superSuer');
-  const [, forceUpdate] = useReducer((x) => x + 1, 0);
+  const [user, setUser] = React.useState('superUser');
+  const setFeatureFlags = useSetFeatureFlags();
+
   React.useEffect(() => {
     // START FEATURE FLAGS
-    loadFeatureFlags({
-      features: featureFlagArray,
-      overrides: JSON.parse(process.env.REACT_APP_FEATURE_FLAGS ?? '[]'),
-      persist: process.env.REACT_APP_FEATURE_FLAGS_PERSIST === 'true',
-    });
+    setFeatureFlags(featureFlagArray);
     // END FEATURE_FLAGS
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -87,7 +78,7 @@ const App = (): ReactElement => {
           <Container>
             <main>
               <UserContext.Provider value={{ user, setUser }}>
-                <AppRoutes onFeatureChange={forceUpdate} />
+                <AppRoutes />
               </UserContext.Provider>
             </main>
           </Container>
