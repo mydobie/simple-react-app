@@ -70,7 +70,6 @@ const Version = (/* props */): ReactElement => {
         <Col>
           <h1>Feature flags</h1>
           <p>The current status of feature flags:</p>
-          {/* EXAMPLE: List feature flags (read only) */}
           <FeatureFlagsUI readonly />
         </Col>
       </Row>
