@@ -10,5 +10,4 @@ export default {
   FLOWER_TABS: { TULIPS: 'tulips', DAISIES: 'daisies' },
   ANIMAL: 'animal',
   ANIMAL_PARAMS: { ANIMAL_NAME: 'name', ANIMAL_TYPE: 'type' },
-  DATES: 'dates',
 };

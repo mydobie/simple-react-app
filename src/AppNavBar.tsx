@@ -38,7 +38,6 @@ const AppNavBar = (): ReactElement => (
       {!isProd() ? (
         <NavItem to={ROUTES.FEATURE_FLAGS}>Feature flags</NavItem>
       ) : null}
-      <NavItem to={ROUTES.DATES}>Dates</NavItem>
       <NavItem to={ROUTES.VERSION}>Version</NavItem>
     </Nav>
   </nav>
