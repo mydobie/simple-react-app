@@ -1,10 +1,12 @@
 // Page that shows the application name and version from package.json file
 // Along with the git commit.
-// Note this file should be used in most applications
-// Normally there isn't a need to modify it
+
+// Additional versions can be set on in
+// utils/getVersions.js
+
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { FeatureFlagsUI } from 'feature-flags/react';
+import { FeatureFlagsUI } from 'feature-flags';
 import { useGetVersion } from '../js/getVersion';
 
 const Version = (/* props */): ReactElement => {
@@ -12,7 +14,7 @@ const Version = (/* props */): ReactElement => {
 
   return (
     <>
-      <Row data-testid='versionPageContainer'>
+      <Row>
         <Col>
           <h1>Version</h1>
           <ul>
@@ -40,7 +42,9 @@ const Version = (/* props */): ReactElement => {
             </li>
           </ul>
           <h2>Dependencies</h2>
-          {/* Be careful sharing what dependencies that are are in use.  You don't want to notify users of dependencies that have known security vulnerabilities */}
+          {/* Be careful sharing what dependencies that are are in use.  
+          You don't want to notify users of dependencies that have 
+          known security vulnerabilities */}
           <ul>
             <li>
               <strong>React: </strong>
@@ -66,7 +70,6 @@ const Version = (/* props */): ReactElement => {
         <Col>
           <h1>Feature flags</h1>
           <p>The current status of feature flags:</p>
-          {/* EXAMPLE: List feature flags (read only) */}
           <FeatureFlagsUI readonly />
         </Col>
       </Row>

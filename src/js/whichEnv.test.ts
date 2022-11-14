@@ -8,7 +8,7 @@ import {
   isCI,
   isLocalHost,
   isProd,
-} from '../../js/whichEnv';
+} from './whichEnv';
 
 const helper = (currentEnv: string) => {
   // console.log(whichEnvString());

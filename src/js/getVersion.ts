@@ -1,7 +1,6 @@
 import React from 'react';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-// EXAMPLE: Custom hook
 export const useGetVersion = (
   getVersionsConfig: AxiosRequestConfig | null = null
 ): [{ [key: string]: string }, boolean] => {

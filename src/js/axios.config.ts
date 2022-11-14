@@ -1,4 +1,3 @@
-// AJAX CONFIGS.  Add a separate export for each ajax call
 import { Method } from 'axios';
 
 /* ************ API CALLS ************* */
@@ -10,14 +9,14 @@ export const sampleAPI = {
       : `http://the_real_url_for_the_api.com`,
 };
 
-/* ***************** AJAX Finally Helper ***************/
-// When set in "mock mode" the application will pause simulating a real ajax call
-
 const sleep = (time: number) =>
   new Promise((resolve) => setTimeout(resolve, time));
 
+/* ***************** AJAX Finally Helper ***************/
+// When set in "mock mode" the application will pause simulating a real ajax call
+
 export const ajaxFinally = async (
-  func: () => void = () => {},
+  func: () => void,
   timeout = 3000,
   envVariable = 'REACT_APP_USE_MOCKS'
 ): Promise<void> => {

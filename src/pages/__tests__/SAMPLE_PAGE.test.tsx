@@ -6,7 +6,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 // import { sampleAPI } from '../../js/axios.config';
-import SAMPLE_PAGE from '../../pages/SAMPLE_PAGE';
+import SAMPLE_PAGE from '../SAMPLE_PAGE';
 
 let mock: MockAdapter;
 
@@ -31,6 +31,6 @@ describe('Component tests', () => {
 
   test('Is rendered', async () => {
     render(<SAMPLE_PAGE />);
-    expect(screen.getByTestId('pageContent')).toBeInTheDocument();
+    expect(screen.getByText('Sample Page Content')).toBeInTheDocument();
   });
 });

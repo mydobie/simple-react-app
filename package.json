@@ -9,180 +9,87 @@
     "node": "16 || 18"
   },
   "dependencies": {
-    "axios": "^0.27.2",
-    "bootstrap": "^5.2.0",
-    "feature-flags": "mydobie/featureFlags#npmbuild3.1.0",
+    "axios": "^1.1.3",
+    "bootstrap": "^5.2.2",
+    "feature-flags": "mydobie/featureFlags#npmbuild5.0.0",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.0.2",
-    "react-bootstrap-icons": "^1.8.2",
+    "react-bootstrap": "^2.5.0",
+    "react-bootstrap-icons": "^1.9.1",
     "react-dom": "^18.2.0",
-    "react-router": "^6.0.2",
-    "react-router-dom": "^6.0.2",
-    "styled-components": "^5.3.3",
-    "skip-menu-react": "mydobie/skipmenureact#npmbuild1.0.1"
+    "react-router": "^6.4.3",
+    "react-router-dom": "^6.4.3",
+    "skip-menu-react": "mydobie/skipmenureact#npmbuild1.0.1",
+    "styled-components": "^5.3.6",
+    "@tanstack/react-query": "^4.14.3"
   },
   "devDependencies": {
     "@cypress/instrument-cra": "^1.4.0",
     "@stylelint/postcss-css-in-js": "^0.38.0",
-    "@testing-library/jest-dom": "^5.15.1",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/react-hooks": "^8.0.0",
-    "@testing-library/user-event": "^14.2.0",
-    "@types/jest-axe": "^3.5.1",
-    "@types/react-router-dom": "^5.3.2",
-    "@types/styled-components": "^5.1.25",
-    "@typescript-eslint/eslint-plugin": "^5.32.0",
-    "@typescript-eslint/parser": "^5.32.0",
-    "axe-core": "^4.4.2",
-    "axios-mock-adapter": "^1.21.1",
-    "cypress": "^10.3.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/jest-axe": "^3.5.5",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^5.42.0",
+    "@typescript-eslint/parser": "^5.42.0",
+    "axe-core": "^4.5.1",
+    "axios-mock-adapter": "^1.21.2",
+    "cypress": "^10.11.0",
     "cypress-axe": "^1.0.0",
-    "eslint-plugin-cypress": "^2.12.1",
-    "eslint-config-airbnb": "^19.0.1",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.27.1",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "eslint-watch": "^8.0.0",
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "husky": "^8.0.1",
-    "jest-axe": "^6.0.0",
-    "lint-staged": "^13.0.1",
-    "onchange": "^7.1.0",
-    "postcss": "^8.4.1",
-    "prettier": "^2.5.0",
+    "jest-axe": "^7.0.0",
+    "lint-staged": "^13.0.3",
+    "postcss": "^8.4.18",
+    "prettier": "^2.7.1",
     "react-scripts": "^5.0.1",
-    "sass": "^1.54.0",
-    "stylelint": "^14.9.1",
+    "sass": "^1.55.0",
+    "stylelint": "^14.14.0",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard-scss": "^5.0.0",
+    "stylelint-config-standard-scss": "^6.0.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "typescript": "^4.7.3",
-    "uglify-js": "^3.16.0"
+    "typescript": "^4.8.4",
+    "uglify-js": "^3.17.4"
   },
   "overrides": {
     "cypress": "$cypress"
   },
   "scripts": {
-    "d": "npm i --force",
-    "installDependencies": "npm run d",
+    "d": "npm i ",
     "start": "npm run buildVersionsPage && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts start",
     "start:mock": "REACT_APP_USE_MOCKS=true npm run start",
     "buildVersionsPage": "node utils/getVersions",
     "// ----------------------------------------------------------1": "",
     "buildts": "npm run buildVersionsPage && tsc --project tsconfig-build-files.json",
     "build": "npm run d && npm run test && npm run npmAudit && npm run build:ci",
-    "build:ci": "node utils/getVersions && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts build",
+    "build:ci": "npm run buildVersionsPage && REACT_APP_GIT_SHA=`git rev-parse --short HEAD` react-scripts build",
     "build:hash": "REACT_APP_USE_HASH_ROUTER=true npm run build:ci",
     "test": "react-scripts test --coverage --passWithNoTests --testPathIgnorePatterns /helpers --watchAll=false ",
-    "test:watch": "react-scripts test ",
     "test:update": "npm run test -- -u",
     "cypress": "cypress open",
     "cypress:run": "cypress run",
     "// ----------------------------------------------------------2": "",
-    "lint": "npm run lint:js && npm run prettier:all && npm run lint:scss:all && npm run lint:scssinjs:all && echo 'No linting errors found.'",
-    "lint:fix": "npm run prettier:fix:all && npm run lint:js:fix &&  npm run lint:scss:fix:all",
-    "lint:watch": "onchange 'src/**/*.*' -- npm run lint:fix",
-    "// ----------------------------------------------------------3": "",
-    "lint:js": "tsc --noEmit && esw --ext .js,.jsx,.ts,.tsx --color ",
+    "lint": "npm run lint:js && npm run format && echo 'No issues found'",
+    "lint:fix": "npm run lint:js:fix && npm run format:fix && npm run lint:css:fix && echo 'All issues addressed'",
+    "lint:js": "eslint src/**/*.{js,jsx,ts,tsx,json} --no-error-on-unmatched-pattern ",
     "lint:js:fix": "npm run lint:js -- --fix",
-    "prettier": "prettier  --ignore-path ./.eslintignore --check",
-    "prettier:all": "npm run prettier '**/*.+(js|jsx|ts|tsx|html|css|scss|json|md)'",
-    "prettier:fix": "prettier  --ignore-path ./.eslintignore --write",
-    "prettier:fix:all": "npm run prettier:fix '**/*.+(js|jsx|ts|tsx|html|css|scss|json|md)'",
-    "lint:scss": "stylelint --ignore-path ./.eslintignore ",
-    "lint:scssinjs": "npm run lint:scss -- --config .stylelintrcJS ",
-    "lint:scss:all": "npm run lint:scss './**/*.+(css|scss)'",
-    "lint:scssinjs:all": "npm run lint:scssinjs  './**/*.+(ts|tsx|js|jsx)'",
-    "lint:scss:fix:all": "npm run lint:scss -- --fix './**/*.+(css|scss)' && npm run lint:scssinjs -- --fix './**/*.+(ts|tsx|js|jsx)'",
+    "format": "prettier --ignore-path ./.eslintignore --check 'src/**/*.{js,jsx,ts,tsx,css,scss,md,json,html}' ",
+    "format:fix": "prettier --ignore-path ./.eslintignore --write 'src/**/*.{js,jsx,ts,tsx,css,scss,md,json,html}' ",
+    "lint:css": "npm run lint:css:css && npm run lint:css:js",
+    "lint:css:fix": "npm run lint:css:css -- --fix && npm run lint:css:js -- --fix",
+    "lint:css:css": "stylelint --ignore-path ./.eslintignore './**/*.+(css|scss)'",
+    "lint:css:js": "stylelint --ignore-path ./.eslintignore --config .stylelintrcJS './**/*.+(ts|tsx|js|jsx)'",
     "// ----------------------------------------------------------4": "",
-    "clean": "rm -rf node_modules && rm -f package-lock.json && npm run d",
     "uglify": "uglifyjs ",
     "checkCoverage": "node ./utils/testCoverage.js",
     "createTar": "node ./utils/createArchive.js",
-    "npmAudit": "npm audit -audit-level high --production",
+    "npmAudit": "npm audit -audit-level high --omit=dev",
     "// ----------------------------------------------------------5": "",
     "prepare": "husky install"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "printWidth": 80
-  },
-  "eslintConfig": {
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "react",
-      "@typescript-eslint",
-      "prettier",
-      "import"
-    ],
-    "extends": [
-      "airbnb-typescript",
-      "airbnb/hooks",
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:@typescript-eslint/recommended",
-      "prettier",
-      "plugin:prettier/recommended"
-    ],
-    "env": {
-      "browser": true,
-      "jasmine": true,
-      "jest": true,
-      "node": true
-    },
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "rules": {
-      "react/static-property-placement": "off",
-      "react/require-default-props": "off",
-      "react/prop-types": "off",
-      "prettier/prettier": "error",
-      "@typescript-eslint/no-unused-vars": [
-        "error"
-      ],
-      "no-var": "error",
-      "curly": "error",
-      "no-console": "error",
-      "no-unused-vars": "error",
-      "arrow-body-style": [
-        "error",
-        "as-needed"
-      ]
-    },
-    "overrides": [
-      {
-        "extends": [
-          "plugin:cypress/recommended"
-        ],
-        "files": [
-          "cypress/**/*.js"
-        ]
-      }
-    ]
-  },
-  "stylelint": {
-    "extends": [
-      "stylelint-config-standard-scss",
-      "stylelint-config-prettier"
-    ]
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/index.tsx",
-      "!src/__test_fixtures__/**/*.*"
-    ],
-    "coverageReporters": [
-      "html",
-      "json-summary",
-      "text-summary"
-    ]
   },
   "browserslist": {
     "production": [
@@ -195,5 +102,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/index.tsx",
+      "!src/__test_fixtures__/**/*.*"
+    ],
+    "coverageReporters": [
+      "html",
+      "json-summary",
+      "text-summary"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios)"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/src/__mocks__/styleMock.js"
+    }
   }
 }

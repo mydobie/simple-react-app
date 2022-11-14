@@ -3,7 +3,7 @@ import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import SetAxios from '../../components/SetAxios';
+import SetAxios from '../SetAxios';
 
 const mock = new MockAdapter(axios);
 
@@ -66,7 +66,7 @@ describe('SetAxios tests', () => {
     expect(testResponse).toHaveBeenCalledTimes(0);
   });
 
-  test('Goood ajax call', async () => {
+  test('Good ajax call', async () => {
     const clearError = jest.fn();
     const setError = jest.fn();
     const testResponse = jest.fn();

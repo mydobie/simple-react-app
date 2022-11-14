@@ -1,47 +1,37 @@
 // Main navigation bar
 
-import React, { ReactElement } from 'react';
+import React, { ReactElement, PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
-
-import ROUTES from './AppRouteNames';
 import { isProd } from './js/whichEnv';
+import ROUTES from './AppRouteNames';
 
-const activeClass = (isActive: boolean) =>
-  `nav-link ${isActive ? 'active' : ''}`;
+const NavItem: React.FC<PropsWithChildren<{ to: string; end?: boolean }>> = ({
+  to,
+  end,
+  children,
+}) => (
+  <Nav.Item>
+    <NavLink
+      className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+      to={to}
+      end={end}
+    >
+      {children}
+    </NavLink>
+  </Nav.Item>
+);
 
-// EXAMPLE: Navigation bar
 const AppNavBar = (): ReactElement => (
   <nav>
     <Nav>
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.HOME}
-        >
-          Home
-        </NavLink>
-      </Nav.Item>
-
+      <NavItem to={ROUTES.HOME} end>
+        Home
+      </NavItem>
       {!isProd() ? (
-        <Nav.Item>
-          <NavLink
-            className={({ isActive }) => activeClass(isActive)}
-            to={ROUTES.FEATURE_FLAGS}
-          >
-            Feature flags
-          </NavLink>
-        </Nav.Item>
+        <NavItem to={ROUTES.FEATURE_FLAGS}>Feature flags</NavItem>
       ) : null}
-
-      <Nav.Item>
-        <NavLink
-          className={({ isActive }) => activeClass(isActive)}
-          to={ROUTES.VERSION}
-        >
-          Version
-        </NavLink>
-      </Nav.Item>
+      <NavItem to={ROUTES.VERSION}>Version</NavItem>
     </Nav>
   </nav>
 );

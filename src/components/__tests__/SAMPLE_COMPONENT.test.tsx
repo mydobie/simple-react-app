@@ -7,7 +7,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 // import { sampleAPI } from '../../js/axios.config';
-import SAMPLE_COMPONENT from '../../components/SAMPLE_COMPONENT';
+import SAMPLE_COMPONENT from '../SAMPLE_COMPONENT';
 
 let mock: MockAdapter;
 
@@ -32,6 +32,6 @@ describe('Component tests', () => {
 
   test('Is rendered', async () => {
     render(<SAMPLE_COMPONENT />);
-    expect(screen.getByTestId('componentContent')).toBeInTheDocument();
+    expect(screen.getByText('Sample Component Content')).toBeInTheDocument();
   });
 });

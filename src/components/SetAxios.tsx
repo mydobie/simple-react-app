@@ -1,10 +1,10 @@
-// NOTE This file allows you to write code that will be run before and after every ajax call
-
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable no-fallthrough */
+
+// NOTE This file allows you to write code that will be run before and after every ajax call
 
 import React, { ReactElement } from 'react';
 import axios from 'axios';
-// import { useHistory, useLocation } from 'react-router-dom';
 
 // ** Main component type */
 interface Props {
@@ -22,14 +22,12 @@ const SetAxios = ({
   testResponse = () => {},
   testMode = false,
 }: Props): ReactElement => {
-  // const history = useHistory(); // You can goto another route automatically = history.push("/mypath")
-  // const location = useLocation(); // Route of current page = location.pathname
-
   SetAxios.setAxiosHeaders();
 
   axios.interceptors.request.use(
     (config) => {
-      // Add code to be run before an ajax call is made HERE
+      // Add code to be run before an ajax call
+
       clearError();
       return config;
     },
@@ -38,16 +36,15 @@ const SetAxios = ({
 
   axios.interceptors.response.use(
     (response) => {
-      // Add code to be run after a successful ajax call HERE
+      // Add code to be run after a successful ajax
       testResponse(response);
       return response;
     },
     (error) => {
-      // Add code to be run after a failed ajax call HERE
+      // Add code to be run after a failed ajax call
       if (error.response?.status) {
         switch (error.response?.status) {
           case 401:
-          //  history.push(LOGIN_ROUTE); // example to forward to another page
           // break;
           case 403:
           // break;
@@ -57,7 +54,6 @@ const SetAxios = ({
           // break;
           default:
             setError(SetAxios.UNKNOWN_ERROR);
-            break;
         }
       } else {
         setError(SetAxios.UNKNOWN_ERROR);

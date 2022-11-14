@@ -12,6 +12,7 @@
 /build
 /archive
 /public/versions.json
+/lib
 
 # misc
 .DS_Store
