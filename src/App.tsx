@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 import { BrowserRouter, HashRouter } from 'react-router-dom'; // Use `HashRouter as Router` when you can't control the URL ... like GitHub pages
 import { Container, Card } from 'react-bootstrap';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import SkipMenu from 'skip-menu-react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -73,6 +74,7 @@ const App = (): ReactElement => {
       <Router basename={basename}>
         <QueryClientProvider client={queryClient}>
           <SetAxios />
+          <SkipMenu theme='bootstrap' alwaysShow={false} useAccessKey />
           <Header />
           <AppNavBar />
           <Container>

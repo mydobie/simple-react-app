@@ -22,7 +22,8 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.4.3",
     "react-router-dom": "^6.4.3",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "skip-menu-react": "mydobie/skipmenureact#npmbuild1.0.1"
   },
   "devDependencies": {
     "@cypress/instrument-cra": "^1.4.0",
