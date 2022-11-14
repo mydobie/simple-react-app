@@ -28,7 +28,7 @@ describe('App (router) tests', () => {
     expect(results).toHaveNoViolations();
   });
 
-  test('404 is shown for /cannnotFindPage', () => {
+  test('404 is shown for /cannnotFindPage', async () => {
     render(
       <MemoryRouter initialEntries={['/cannnotFindPage']}>
         <AppRoutes />
@@ -40,10 +40,12 @@ describe('App (router) tests', () => {
 });
 
 describe('App renders correctly', () => {
+  // This test gie an not wrapped in act error
+  // But the test is still valid
   test('App is accessible', async () => {
     const { container } = render(<App />);
 
-    await waitFor(() => expect(screen.getByRole('banner')).toBeInTheDocument());
+    waitFor(() => expect(screen.getByRole('banner')).toBeInTheDocument());
 
     const results = await axe(container);
     expect(results).toHaveNoViolations();

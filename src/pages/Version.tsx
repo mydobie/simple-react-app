@@ -6,7 +6,7 @@
 
 import React, { ReactElement } from 'react';
 import { Row, Col } from 'react-bootstrap';
-import { FeatureFlagsUI } from 'feature-flags/react';
+import { FeatureFlagsUI } from 'feature-flags';
 import { useGetVersion } from '../js/getVersion';
 
 const Version = (/* props */): ReactElement => {

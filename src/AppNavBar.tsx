@@ -1,12 +1,12 @@
 // Main navigation bar
 
-import React, { ReactElement } from 'react';
+import React, { ReactElement, PropsWithChildren } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
-
+import { isProd } from './js/whichEnv';
 import ROUTES from './AppRouteNames';
 
-const NavItem: React.FC<{ to: string; end?: boolean }> = ({
+const NavItem: React.FC<PropsWithChildren<{ to: string; end?: boolean }>> = ({
   to,
   end,
   children,
@@ -22,14 +22,15 @@ const NavItem: React.FC<{ to: string; end?: boolean }> = ({
   </Nav.Item>
 );
 
-// EXAMPLE: Navigation bar
 const AppNavBar = (): ReactElement => (
   <nav>
     <Nav>
       <NavItem to={ROUTES.HOME} end>
         Home
       </NavItem>
-
+      {!isProd() ? (
+        <NavItem to={ROUTES.FEATURE_FLAGS}>Feature flags</NavItem>
+      ) : null}
       <NavItem to={ROUTES.VERSION}>Version</NavItem>
     </Nav>
   </nav>
