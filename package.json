@@ -87,7 +87,7 @@
     "uglify": "uglifyjs ",
     "checkCoverage": "node ./utils/testCoverage.js",
     "createTar": "node ./utils/createArchive.js",
-    "npmAudit": "npm audit -audit-level high --production",
+    "npmAudit": "npm audit -audit-level high --omit=dev",
     "// ----------------------------------------------------------5": "",
     "prepare": "husky install"
   },
