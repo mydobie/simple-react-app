@@ -16,7 +16,8 @@ const sleep = (time: number) =>
 // When set in "mock mode" the application will pause simulating a real ajax call
 
 export const ajaxFinally = async (
-  func: () => void,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  func = () => {},
   timeout = 3000,
   envVariable = 'REACT_APP_USE_MOCKS'
 ): Promise<void> => {

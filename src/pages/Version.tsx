@@ -50,13 +50,13 @@ const Version = (/* props */): ReactElement => {
               <strong>React: </strong>
               {React.version}
             </li>
-            {version.bootstrap ? (
+            {version?.bootstrap ? (
               <li>
                 <strong>Bootstrap: </strong>
                 {version.bootstrap}
               </li>
             ) : null}
-            {version.featureFlags ? (
+            {version?.featureFlags ? (
               <li>
                 <strong>Feature Flags: </strong>
                 {version.featureFlags}

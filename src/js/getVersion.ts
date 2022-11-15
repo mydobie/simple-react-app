@@ -1,46 +1,37 @@
+/* eslint-disable no-console */
 import React from 'react';
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import { ajaxFinally } from '../js/axios.config';
 
+// EXAMPLE: Custom hook
 export const useGetVersion = (
   getVersionsConfig: AxiosRequestConfig | null = null
 ): [{ [key: string]: string }, boolean] => {
-  const [version, setVersion] = React.useState<{ [key: string]: string }>({});
-  const [isLoading, setIsLoading] = React.useState(false);
+  const axiosConfig = getVersionsConfig || {
+    url: '/versions.json',
+    method: 'get',
+  };
+
+  const {
+    isLoading,
+    error,
+    data: version,
+  } = useQuery({
+    queryKey: [],
+    queryFn: () =>
+      axios(axiosConfig).then(async (response) => {
+        await ajaxFinally();
+        return response.data;
+      }),
+    retry: false,
+  });
 
   React.useEffect(() => {
-    const { CancelToken } = axios;
-    const source = CancelToken.source();
-    const getVersions = async () => {
-      try {
-        setIsLoading(true);
-        const axiosConfig = getVersionsConfig || {
-          url: '/versions.json',
-          method: 'get',
-        };
-        axiosConfig.cancelToken = source.token;
-
-        const response: AxiosResponse<{ [key: string]: string }> = await axios(
-          axiosConfig
-        );
-
-        if (response.data) {
-          setVersion(response.data);
-        } else {
-          throw Error('Uncaught Error');
-        }
-      } catch (_error) {
-        // eslint-disable-next-line no-console
-        console.error('Error finding versions file');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    getVersions();
-
-    return function cleanup() {
-      source.cancel('Operation canceled by the user.');
-    };
-  }, [getVersionsConfig]);
+    if (error) {
+      console.log('Error loading versions file: ', error);
+    }
+  }, [error]);
 
   return [version, isLoading];
 };
